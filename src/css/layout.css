@@ -1,5 +1,6 @@
+/* Estrutura responsiva mobile-first. */
 .container {
-  width: min(100% - 32px, 1100px);
+  width: min(calc(100% - 32px), 1060px);
   margin-inline: auto;
 }
 
@@ -11,51 +12,58 @@
 .brand-bar {
   min-height: 76px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
 }
 
 .main-content {
-  padding-block: 32px 52px;
+  padding-block: 32px 48px;
 }
 
 .page-heading {
-  margin-bottom: 26px;
+  margin-bottom: 24px;
 }
 
 .page-heading h1 {
-  margin-bottom: 10px;
-  font-size: clamp(1.8rem, 6vw, 2.45rem);
-  letter-spacing: -.04em;
+  margin: 0 0 10px;
+  font-size: clamp(1.8rem, 6.5vw, 2.35rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
 }
 
 .page-heading p {
-  max-width: 650px;
-  color: var(--muted);
-  line-height: 1.6;
   margin-bottom: 0;
+  max-width: 570px;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--muted);
 }
 
 .market-layout {
   display: grid;
-  gap: 18px;
   align-items: start;
+  gap: 16px;
 }
 
 .site-footer {
   padding: 22px 0;
-  color: var(--muted);
-  font-size: .78rem;
   border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.75rem;
 }
 
 @media (min-width: 800px) {
   .main-content {
-    padding-top: 46px;
+    padding-block: 48px 64px;
   }
+
+  .page-heading {
+    margin-bottom: 30px;
+  }
+
   .market-layout {
-    grid-template-columns: minmax(300px, .9fr) minmax(0, 1.1fr);
+    grid-template-columns: minmax(300px, 0.9fr) minmax(0, 1.1fr);
     gap: 24px;
   }
 }

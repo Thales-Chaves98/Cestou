@@ -1,9 +1,13 @@
-* {
+/* Elementos e estilos globais. */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: var(--font-family);
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -12,9 +16,11 @@ body {
   min-height: 100vh;
   background: var(--page);
   color: var(--text);
+  line-height: 1.5;
 }
 
-button, input {
+button,
+input {
   font: inherit;
 }
 
@@ -26,12 +32,19 @@ a {
   color: inherit;
 }
 
-h1, h2, p {
+h1,
+h2,
+p {
   margin-top: 0;
 }
 
+h1,
+h2 {
+  line-height: 1.22;
+}
+
 :focus-visible {
-  outline: 3px solid #93c5fd;
+  outline: 3px solid #78B69A;
   outline-offset: 3px;
 }
 

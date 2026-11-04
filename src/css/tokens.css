@@ -1,16 +1,30 @@
-/* Base visual preparada com auxílio de IA. A lógica JavaScript pertence ao estudante. */
+/*
+ * Cestou — identidade visual Fresh.
+ * Design, HTML e CSS desenvolvidos com auxílio de IA (ChatGPT).
+ * Lógica de programação JavaScript desenvolvida pelo aluno.
+ */
 :root {
   color-scheme: light;
-  --page: #f6f8fc;
-  --surface: #ffffff;
-  --surface-soft: #f8fafc;
-  --text: #19283c;
-  --muted: #68778c;
-  --line: #e3e9f1;
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --primary-soft: #eff5ff;
-  --error: #b42318;
+
+  /* Paleta Cestou Fresh */
+  --page: #F8F9F4;
+  --surface: #FFFFFF;
+  --surface-soft: #F7F9F6;
+  --text: #223531;
+  --muted: #64766B;
+  --line: #E2E8E1;
+  --primary: #16765C;
+  --primary-hover: #105D48;
+  --primary-soft: #E7F4EA;
+  --accent: #F4B544;
+  --accent-soft: #FFF1CD;
+  --error: #B42318;
+  --error-soft: #FFF0ED;
+
+  /* Tipografia, raios e sombras compartilhados */
+  --font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --radius-sm: 10px;
+  --radius-md: 12px;
   --radius: 16px;
-  --shadow: 0 12px 36px rgba(25, 45, 80, 0.045);
+  --shadow: 0 7px 28px rgba(27, 64, 41, 0.04);
 }
