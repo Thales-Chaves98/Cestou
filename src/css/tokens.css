@@ -1,0 +1,16 @@
+/* Base visual preparada com auxílio de IA. A lógica JavaScript pertence ao estudante. */
+:root {
+  color-scheme: light;
+  --page: #f6f8fc;
+  --surface: #ffffff;
+  --surface-soft: #f8fafc;
+  --text: #19283c;
+  --muted: #68778c;
+  --line: #e3e9f1;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-soft: #eff5ff;
+  --error: #b42318;
+  --radius: 16px;
+  --shadow: 0 12px 36px rgba(25, 45, 80, 0.045);
+}

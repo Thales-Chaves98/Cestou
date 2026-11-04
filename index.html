@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f8fc" />
+    <meta name="description" content="Compare preços por produto e organize suas compras por mercado." />
+    <title>Cestou | Comparador de mercados</title>
+    <link rel="stylesheet" href="./src/css/tokens.css" />
+    <link rel="stylesheet" href="./src/css/base.css" />
+    <link rel="stylesheet" href="./src/css/layout.css" />
+    <link rel="stylesheet" href="./src/css/components.css" />
+    <script type="module" src="./src/js/app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container brand-bar">
+        <a class="brand" href="./index.html" aria-label="Cestou — início">
+          <span class="brand-icon" aria-hidden="true">C</span>
+          <span class="brand-name">Cestou <span>· comparador de mercados</span></span>
+        </a>
+        <span class="phase-label">MVP · Em construção</span>
+      </div>
+    </header>
+
+    <main class="container main-content" id="conteudo">
+      <div class="page-heading">
+        <span class="eyebrow">Etapa 1 · Cadastro de mercados</span>
+        <h1>Seus mercados</h1>
+        <p>Cadastre os lugares onde você costuma comprar. Depois, poderá selecionar até quatro mercados por comparação.</p>
+      </div>
+
+      <div class="market-layout">
+        <section class="panel" aria-labelledby="add-market-title">
+          <div class="panel-heading">
+            <h2 id="add-market-title">Adicionar mercado</h2>
+            <p>Use um nome fácil de reconhecer na hora de comparar preços.</p>
+          </div>
+          <form class="market-form" id="form-mercado">
+            <div class="field">
+              <label for="mercado-nome">Nome do mercado</label>
+              <input id="mercado-nome" name="nome" type="text" placeholder="Ex.: Mercado Central" maxlength="60" autocomplete="off" required />
+            </div>
+            <p id="mensagem-mercado" class="form-message" role="status" aria-live="polite"></p>
+            <button class="button button-primary" type="submit">Adicionar mercado</button>
+          </form>
+        </section>
+
+        <section class="panel" aria-labelledby="list-title">
+          <div class="panel-heading list-heading">
+            <div>
+              <h2 id="list-title">Mercados cadastrados</h2>
+              <p>Você poderá reutilizá-los em diferentes compras.</p>
+            </div>
+            <span id="total-mercados" class="count-chip">0 mercados</span>
+          </div>
+          <div class="market-list-area">
+            <div id="mercados-vazio" class="empty-state">
+              <span class="empty-illustration" aria-hidden="true">+</span>
+              <strong>Nenhum mercado por aqui</strong>
+              <p>Adicione seu primeiro mercado para começar.</p>
+            </div>
+            <ul id="lista-mercados" class="market-list" aria-label="Lista de mercados cadastrados"></ul>
+          </div>
+        </section>
+      </div>
+
+      <aside class="next-step" aria-label="Próximos recursos">
+        <div class="next-step-mark" aria-hidden="true">02</div>
+        <div>
+          <strong>Em seguida: suas compras</strong>
+          <p>Depois do cadastro de mercados, vamos criar compras, adicionar itens e selecionar os mercados participantes.</p>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <span>Projeto educacional · HTML/CSS preparados com auxílio de IA; JavaScript desenvolvido pelo estudante.</span>
+      </div>
+    </footer>
+  </body>
+</html>

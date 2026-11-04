@@ -1,0 +1,260 @@
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  text-decoration: none;
+}
+
+.brand-icon {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  border-radius: 12px;
+  background: var(--primary);
+  color: white;
+  font-weight: 800;
+  letter-spacing: -.07em;
+}
+
+.brand-name {
+  font-weight: 780;
+  letter-spacing: -.035em;
+  font-size: 1.05rem;
+}
+
+.brand-name span {
+  font-weight: 500;
+}
+
+.phase-label {
+  font-size: .72rem;
+  font-weight: 700;
+  color: #526278;
+  background: #f1f5f9;
+  padding: 8px 11px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+
+.eyebrow {
+  display: block;
+  color: var(--primary);
+  font-size: .72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  margin-bottom: 12px;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.panel-heading {
+  padding: 24px 22px 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.panel-heading h2 {
+  margin-bottom: 7px;
+  font-size: 1.1rem;
+  letter-spacing: -.02em;
+}
+
+.panel-heading p {
+  margin-bottom: 0;
+  font-size: .86rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.market-form {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-size: .86rem;
+  font-weight: 700;
+}
+
+.field input {
+  min-height: 48px;
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: #fff;
+  color: var(--text);
+}
+
+.field input:focus {
+  outline: 0;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px #dbeafe;
+}
+
+.button {
+  border: 0;
+  border-radius: 10px;
+  min-height: 48px;
+  padding: 12px 18px;
+  font-weight: 730;
+}
+
+.button-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.button-primary:hover {
+  background: var(--primary-hover);
+}
+
+.form-message {
+  color: var(--error);
+  font-size: .84rem;
+  margin: 0;
+  min-height: 0;
+}
+
+.form-message:empty {
+  display: none;
+}
+
+.list-heading {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.count-chip {
+  white-space: nowrap;
+  font-size: .72rem;
+  font-weight: 700;
+  color: #41546e;
+  padding: 7px 10px;
+  border-radius: 50px;
+  background: var(--surface-soft);
+}
+
+.market-list-area {
+  padding: 14px 22px 22px;
+}
+
+.empty-state {
+  padding: 26px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.empty-illustration {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  color: var(--primary);
+  background: var(--primary-soft);
+  font-size: 1.75rem;
+  margin-bottom: 13px;
+}
+
+.empty-state strong {
+  font-size: .94rem;
+}
+
+.empty-state p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: .83rem;
+}
+
+.market-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.market-list li {
+  min-width: 0;
+  padding: 14px 15px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--surface-soft);
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.next-step {
+  margin-top: 22px;
+  padding: 19px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  border: 1px dashed #c8d6e9;
+  border-radius: 14px;
+  color: #41546e;
+}
+
+.next-step-mark {
+  flex: 0 0 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #eaf1ff;
+  color: var(--primary);
+  font-weight: 780;
+}
+
+.next-step strong {
+  display: block;
+  margin: 2px 0 5px;
+}
+
+.next-step p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .82rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 480px) {
+  .phase-label {
+    display: none;
+  }
+  .brand-name {
+    font-size: 1rem;
+  }
+  .panel-heading {
+    padding: 20px 18px 16px;
+  }
+  .market-form {
+    padding: 18px;
+  }
+  .market-list-area {
+    padding: 12px 18px 18px;
+  }
+  .list-heading {
+    align-items: center;
+  }
+}
