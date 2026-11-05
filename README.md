@@ -29,14 +29,6 @@ O desenvolvimento será incremental: começaremos com um MVP simples e adicionar
 - JavaScript (ES Modules) — lógica escrita pelo aluno.
 - localStorage — persistência local prevista para o MVP.
 
-## Executar localmente
-
-Abra o projeto no VS Code e utilize o **Live Server** ou outro servidor HTTP local. O arquivo `index.html` utiliza JavaScript com `type="module"`.
-
-## Planejamento
-
-As regras de funcionamento, decisões de interface e cenários especiais estão documentados separadamente em [docs/decisoes-do-produto.md](docs/decisoes-do-produto.md), para não transformar este README em uma especificação técnica.
-
 ---
 
 **Cestou — projeto de aprendizado em JavaScript, com interface HTML/CSS assistida por IA e lógica desenvolvida pelo aluno.**
