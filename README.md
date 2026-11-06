@@ -1,34 +1,71 @@
 # Cestou 🛒
 
-**Projeto educacional de desenvolvimento web**, criado para praticar JavaScript por meio de uma aplicação real: um comparador de preços entre mercados.
+**Aplicação educacional de comparação de preços entre supermercados.**
 
-O objetivo é aprender construindo, evoluindo o projeto em etapas, com foco em código organizado e na experiência em dispositivos móveis. Esta primeira versão é voltada ao estudo e ao uso pessoal.
+O projeto existe para o aluno aprender JavaScript construindo uma aplicação real. A interface usa a identidade visual **Cestou Fresh** (verde, tons claros e destaque discreto para os menores preços).
 
-## Autoria e uso de inteligência artificial
+## ⚠️ Fase atual: protótipo para avaliação
 
-> **Este projeto tem finalidade de aprendizado.**
->
-> **HTML e CSS:** a estrutura visual, o layout responsivo e a estilização são desenvolvidos com auxílio do **ChatGPT (inteligência artificial)**.
->
-> **JavaScript:** a **lógica de programação e as funcionalidades são desenvolvidas pelo aluno**, que é o responsável por implementar o comportamento da aplicação.
+A branch `prototype/mvp-completo` é uma **exceção temporária** ao processo de autoria do projeto: **HTML, CSS e JavaScript foram preparados com auxílio do ChatGPT** para permitir testar o MVP inteiro e decidir seus requisitos finais.
 
-O ChatGPT também participa como **mentor e revisor**, explicando conceitos, propondo exercícios e avaliando o código escrito pelo aluno. A lógica JavaScript do aluno não deve ser alterada pela IA sem solicitação explícita.
+**Após a aprovação do protótipo, o JavaScript criado pela IA será retirado e a implementação da lógica ficará com o aluno.** O arquivo `src/js/app.js` permanece reservado à futura implementação educacional. **Não apresentar o JavaScript deste protótipo como código escrito pelo aluno.**
 
-A distinção entre as partes feitas com apoio de IA e o trabalho de programação do aluno é intencional e faz parte da proposta de aprendizagem deste repositório.
+A branch `main` permanece preservada até a avaliação.
 
-## Sobre o aplicativo
+## Funcionalidades desta demonstração
 
-O Cestou permitirá cadastrar mercados, criar uma lista de compras, registrar preços e comparar cada produto entre **até quatro mercados por compra**. Ao finalizar, serão geradas listas agrupadas por mercado, colocando cada produto onde foi encontrado o menor preço informado.
+- Painel inicial com listas, mercados e economia potencial das compras finalizadas.
+- Cadastro e renomeação de mercados, sem duplicação de nomes; exclusão impedida quando houver vínculo com compras.
+- Criação, renomeação e exclusão de listas de compras.
+- Seleção de **até quatro mercados por compra**.
+- Cadastro, edição e exclusão de produtos com quantidade e unidade.
+- Preços unitários por produto/mercado, com menor preço destacado visualmente em verde.
+- Atribuição automática de cada produto ao mercado com menor preço informado.
+- Resumo por mercado, totais por produto e estimativa de economia.
+- Finalização de compras, checklist dos itens comprados e **retorno ao rascunho sem duplicação**.
+- Cópia da lista agrupada por mercado e dados fictícios de demonstração.
+- Persistência no **localStorage** do próprio navegador.
 
-O desenvolvimento será incremental: começaremos com um MVP simples e adicionaremos recursos conforme o aprendizado avançar.
+### Regras importantes
 
-## Tecnologias
+- Na ausência de preço, aquele mercado é ignorado para o item. Para finalizar, cada produto deve possuir pelo menos um preço informado.
+- Preço zero é válido (por exemplo, item grátis).
+- Em empate de preço, é escolhido o primeiro mercado na ordem de seleção da compra.
+- A estimativa de economia é a soma das diferenças entre o **maior preço informado** e o menor preço de cada item, multiplicadas pelas quantidades. Não é uma garantia de economia real nem considera combustível, deslocamento ou descontos.
+- Os valores demonstrativos são fictícios, não consultam preços reais.
+- O protótipo funciona **sem login, backend e sincronização**; limpar os dados do navegador apaga as compras.
+- Excluir uma compra apaga seus dados; restaurar a demonstração substitui todos os dados locais.
 
-- HTML5 — estrutura da interface.
-- CSS3 — identidade visual e layout mobile-first.
-- JavaScript (ES Modules) — lógica escrita pelo aluno.
-- localStorage — persistência local prevista para o MVP.
+## Executar localmente
+
+O aplicativo é feito com HTML, CSS e JavaScript vanilla (ES Modules), sem instalação de dependências.
+
+No diretório do projeto, execute:
+
+```bash
+python -m http.server 5500
+```
+
+Acesse **http://localhost:5500**. Também é possível utilizar a extensão Live Server do VS Code. Se o navegador bloquear módulos ES ao abrir arquivos diretamente pelo sistema (`file://`), utilize o servidor local.
+
+## Arquitetura do protótipo
+
+```text
+index.html                # Interface principal e navegação
+src/css/tokens.css        # Paleta e tokens de design originais
+src/css/mvp.css           # Layout completo e responsivo do protótipo
+src/js/mvp.js             # Lógica TEMPORÁRIA criada para avaliação
+src/js/app.js             # Reservado à futura implementação do aluno
+```
+
+## Próximos passos após avaliação
+
+1. Revisar telas, fluxos de uso, textos e regras de negócios.
+2. Congelar a interface aprovada como referência visual e funcional.
+3. Remover `src/js/mvp.js` e a referência a ele no HTML.
+4. Planejar exercícios graduais para o aluno implementar `src/js/app.js` e os módulos necessários.
+5. Preservar a documentação do protótipo como referência de requisitos, distinguindo claramente a autoria.
 
 ---
 
-**Cestou — projeto de aprendizado em JavaScript, com interface HTML/CSS assistida por IA e lógica desenvolvida pelo aluno.**
+**Finalidade pedagógica:** na versão educacional definitiva, **HTML e CSS são desenvolvidos com auxílio do ChatGPT, enquanto a lógica JavaScript é desenvolvida pelo aluno**. A versão demonstrativa completa é uma etapa excepcional de avaliação e não representa a autoria futura da lógica.
