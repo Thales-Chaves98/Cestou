@@ -1,4 +1,4 @@
-import { formatMoney } from "../../prototype/pricing.js";
+import { formatMoney } from "../pricing.js";
 
 export const escapeHtml = value => String(value ?? "").replace(/[&<>"']/g, character =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character]);
