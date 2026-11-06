@@ -1,30 +1,27 @@
 /*
- * Cestou — identidade visual Fresh.
- * Design, HTML e CSS desenvolvidos com auxílio de IA (ChatGPT).
- * Lógica de programação JavaScript desenvolvida pelo aluno.
+ * Identidade visual Cestou Fresh.
+ * A interface HTML/CSS foi produzida com auxílio de IA (ChatGPT).
+ * O JavaScript deste branch é TEMPORÁRIO para avaliação; após a aprovação,
+ * a lógica será desenvolvida pelo aluno.
  */
 :root {
   color-scheme: light;
-
-  /* Paleta Cestou Fresh */
-  --page: #F8F9F4;
-  --surface: #FFFFFF;
-  --surface-soft: #F7F9F6;
-  --text: #223531;
-  --muted: #64766B;
-  --line: #E2E8E1;
-  --primary: #16765C;
-  --primary-hover: #105D48;
-  --primary-soft: #E7F4EA;
-  --accent: #F4B544;
-  --accent-soft: #FFF1CD;
-  --error: #B42318;
-  --error-soft: #FFF0ED;
-
-  /* Tipografia, raios e sombras compartilhados */
-  --font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --page: #f8f9f4;
+  --surface: #ffffff;
+  --soft: #f7f9f6;
+  --ink: #223531;
+  --muted: #64766b;
+  --line: #e2e8e1;
+  --primary: #16765c;
+  --primary-dark: #105d48;
+  --mint: #e7f4ea;
+  --gold: #f4b544;
+  --gold-soft: #fff1cd;
+  --danger: #b42318;
+  --danger-soft: #fff0ed;
   --radius-sm: 10px;
-  --radius-md: 12px;
-  --radius: 16px;
-  --shadow: 0 7px 28px rgba(27, 64, 41, 0.04);
+  --radius-md: 13px;
+  --radius-lg: 18px;
+  --shadow: 0 10px 28px rgba(27, 64, 41, .045);
+  --font: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
