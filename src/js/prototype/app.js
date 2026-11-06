@@ -392,7 +392,21 @@ document.addEventListener("change", event => {
       }
       item.prices[marketId] = cents;
     }
-    saveAndRender(purchase, true);
+    // Salvar sem reconstruir a tela preserva busca, filtro e foco do teclado mobile.
+    touch(purchase);
+    if (!store.save()) toast("Não foi possível salvar o preço no navegador.");
+    field.value = priceToInput(item.prices?.[marketId]);
+    const filled = purchase.items.filter(row => Number.isSafeInteger(row.prices?.[marketId])).length;
+    const line = field.closest("[data-price-row]");
+    if (line) line.dataset.filled = String(field.value !== "");
+    const totalBadge = document.querySelector(".section-header .count-pill");
+    if (totalBadge) totalBadge.textContent = `${filled}/${purchase.items.length}`;
+    const progressLabel = document.querySelector(".progress-label span:last-child");
+    if (progressLabel) progressLabel.textContent = `${filled} de ${purchase.items.length} registrados`;
+    const progressFill = document.querySelector(".progress-track > span");
+    if (progressFill) progressFill.style.width =
+      `${purchase.items.length ? 100 * filled / purchase.items.length : 0}%`;
+    filterPrices();
   }
   if (field.matches("[data-tie-item]") && purchase.status === "draft") {
     const item = purchase.items.find(row => row.id === field.dataset.tieItem);
