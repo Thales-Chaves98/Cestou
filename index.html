@@ -1,22 +1,76 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f8f9f4">
-<meta name="description" content="Cestou: planeje compras e compare preços entre mercados.">
-<title>Cestou — Sua compra, sua economia</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./src/css/tokens.css"><link rel="stylesheet" href="./src/css/mvp.css">
-<script type="module" src="./src/js/mvp.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f8f9f4" />
+  <meta name="description" content="Cestou: compare preços por produto, organize suas compras e descubra onde comprar cada item." />
+  <title>Cestou — Sua compra, mais econômica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./src/css/tokens.css" />
+  <link rel="stylesheet" href="./src/css/base.css" />
+  <link rel="stylesheet" href="./src/css/shell.css" />
+  <link rel="stylesheet" href="./src/css/components.css" />
+  <link rel="stylesheet" href="./src/css/pages.css" />
+  <link rel="stylesheet" href="./src/css/comparison.css" />
+  <script type="module" src="./src/js/prototype/app.js"></script>
 </head>
 <body>
-<header class="topbar"><div class="wrap topbar-inner">
-<a href="#inicio" class="brand"><span class="brand-symbol">▤</span><span><strong>cestou<span class="dot">.</span></strong><small>Sua compra, sua economia</small></span></a>
-<nav class="desktop-nav" aria-label="Navegação principal"><a href="#inicio" data-nav="inicio">Visão geral</a><a href="#compras" data-nav="compras">Minhas compras</a><a href="#mercados" data-nav="mercados">Mercados</a></nav>
-<span class="pill pill-green">Protótipo MVP</span></div></header>
-<main id="app" class="wrap main" aria-live="polite"></main>
-<nav class="mobile-nav" aria-label="Navegação inferior"><a href="#inicio" data-nav="inicio">⌂ <span>Início</span></a><a href="#compras" data-nav="compras">☷ <span>Compras</span></a><a href="#mercados" data-nav="mercados">▣ <span>Mercados</span></a></nav>
-<div id="modal-root"></div><div id="toast" class="toast" role="status" aria-live="polite"></div>
-<footer class="wrap footer">Cestou • Protótipo funcional para avaliação • Dados salvos somente neste navegador.</footer>
-</body></html>
+  <a class="skip-link" href="#app">Ir para conteúdo</a>
+  <header class="site-header">
+    <div class="container header-content">
+      <a class="brand" href="#compras" aria-label="Cestou — Minhas compras">
+        <span class="brand-symbol" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+            stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m5 10 2.3 9h9.4l2.3-9H5Z" />
+            <path d="m8.1 10 3.9-6 3.9 6" />
+            <path d="M10 14v2.5M14 14v2.5" />
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <strong>cestou<span>.</span></strong>
+          <small>Compare. Economize. Compre.</small>
+        </span>
+      </a>
+      <nav class="desktop-navigation" aria-label="Navegação principal">
+        <a data-main-nav="compras" href="#compras">Compras</a>
+        <a data-main-nav="mercados" href="#mercados">Mercados</a>
+      </nav>
+      <span class="header-label">MVP · Protótipo de avaliação</span>
+    </div>
+  </header>
+
+  <main class="container app-content" id="app" tabindex="-1"></main>
+
+  <footer class="site-footer">
+    <div class="container">
+      Cestou · Protótipo educacional. HTML, CSS e JavaScript desta demonstração feitos com auxílio de IA.
+      A lógica definitiva será implementada pelo aluno.
+    </div>
+  </footer>
+
+  <nav class="mobile-navigation" aria-label="Navegação inferior">
+    <a data-main-nav="compras" href="#compras">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="m4 9 2.1 11h11.8L20 9H4Z" /><path d="m8 9 4-6 4 6" />
+      </svg>
+      <span>Compras</span>
+    </a>
+    <a data-main-nav="mercados" href="#mercados">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 10h18l-2-6H5l-2 6Z" /><path d="M5 10v10h14V10" />
+        <path d="M9 20v-7h6v7" />
+      </svg>
+      <span>Mercados</span>
+    </a>
+  </nav>
+
+  <div id="dialog-root"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

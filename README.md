@@ -1,71 +1,88 @@
 # Cestou 🛒
 
-**Aplicação educacional de comparação de preços entre supermercados.**
+**Projeto educacional de aprendizagem em JavaScript**, desenvolvido em etapas a partir de um aplicativo de comparação de preços entre mercados.
 
-O projeto existe para o aluno aprender JavaScript construindo uma aplicação real. A interface usa a identidade visual **Cestou Fresh** (verde, tons claros e destaque discreto para os menores preços).
+## Autoria e objetivo pedagógico
 
-## ⚠️ Fase atual: protótipo para avaliação
+> **HTML e CSS:** interface visual, identidade Cestou Fresh, componentes responsivos e experiência mobile-first desenvolvidos com auxílio do **ChatGPT (IA)**.
+>
+> **JavaScript da versão de aprendizagem:** regras de negócio e comportamento da aplicação serão **desenvolvidos pelo aluno**. O ChatGPT atua como mentor e revisor, sem modificar o código JavaScript do aluno sem pedido explícito.
 
-A branch `prototype/mvp-completo` é uma **exceção temporária** ao processo de autoria do projeto: **HTML, CSS e JavaScript foram preparados com auxílio do ChatGPT** para permitir testar o MVP inteiro e decidir seus requisitos finais.
+### Exceção temporária — protótipo completo para avaliação
 
-**Após a aprovação do protótipo, o JavaScript criado pela IA será retirado e a implementação da lógica ficará com o aluno.** O arquivo `src/js/app.js` permanece reservado à futura implementação educacional. **Não apresentar o JavaScript deste protótipo como código escrito pelo aluno.**
+Na branch **`prototype/mvp-completo`**, o ChatGPT desenvolveu **também um JavaScript temporário** para demonstrar todo o fluxo do MVP antes do início das atividades.
 
-A branch `main` permanece preservada até a avaliação.
+**O JavaScript desta demonstração foi escrito por IA, não pelo aluno.** Depois que o protótipo for avaliado e aprovado, os módulos da pasta `src/js/prototype/` e sua referência no HTML serão removidos, preservando a interface aprovada. Só então o aluno fará a lógica por conta própria, em exercícios progressivos.
 
-## Funcionalidades desta demonstração
+A branch **`main`** contém a base educacional e não foi alterada por esta implementação.
 
-- Painel inicial com listas, mercados e economia potencial das compras finalizadas.
-- Cadastro e renomeação de mercados, sem duplicação de nomes; exclusão impedida quando houver vínculo com compras.
-- Criação, renomeação e exclusão de listas de compras.
-- Seleção de **até quatro mercados por compra**.
-- Cadastro, edição e exclusão de produtos com quantidade e unidade.
-- Preços unitários por produto/mercado, com menor preço destacado visualmente em verde.
-- Atribuição automática de cada produto ao mercado com menor preço informado.
-- Resumo por mercado, totais por produto e estimativa de economia.
-- Finalização de compras, checklist dos itens comprados e **retorno ao rascunho sem duplicação**.
-- Cópia da lista agrupada por mercado e dados fictícios de demonstração.
-- Persistência no **localStorage** do próprio navegador.
+## Ideia do aplicativo
 
-### Regras importantes
+O Cestou permite cadastrar mercados, criar compras, registrar os preços de produtos e gerar **listas separadas por mercado**, direcionando cada item para o menor preço encontrado entre os valores informados. **Não busca escolher um mercado único com menor total.**
 
-- Na ausência de preço, aquele mercado é ignorado para o item. Para finalizar, cada produto deve possuir pelo menos um preço informado.
-- Preço zero é válido (por exemplo, item grátis).
-- Em empate de preço, é escolhido o primeiro mercado na ordem de seleção da compra.
-- A estimativa de economia é a soma das diferenças entre o **maior preço informado** e o menor preço de cada item, multiplicadas pelas quantidades. Não é uma garantia de economia real nem considera combustível, deslocamento ou descontos.
-- Os valores demonstrativos são fictícios, não consultam preços reais.
-- O protótipo funciona **sem login, backend e sincronização**; limpar os dados do navegador apaga as compras.
-- Excluir uma compra apaga seus dados; restaurar a demonstração substitui todos os dados locais.
+A comparação será feita por produto, com até **quatro mercados por compra**, priorizando o celular.
 
-## Executar localmente
+## O que testar no protótipo
 
-O aplicativo é feito com HTML, CSS e JavaScript vanilla (ES Modules), sem instalação de dependências.
+- Criar, renomear e excluir mercados e compras.
+- Criar, editar e excluir itens com quantidades.
+- Selecionar de 1 a 4 mercados no rascunho; pelo menos 2 são necessários para finalizar.
+- Registrar preços **um mercado por vez**, com campos compactos e salvamento local.
+- Comparar preços **por produto**, sem tabela: 2 mercados lado a lado; 3 em distribuição 2 + 1; 4 em grade 2 × 2.
+- Ver o menor preço em verde, sem textos repetitivos.
+- Deixar preços em branco e **finalizar após confirmação**; item sem nenhuma cotação fica fora das listas.
+- Resolver empates escolhendo qual mercado receberá o item.
+- Consultar listas finais agrupadas por mercado, subtotais e checklist.
+- **Voltar a rascunho** sem duplicar compra, mantendo produtos e preços.
+- Restaurar dados fictícios quando quiser reavaliar os fluxos.
 
-No diretório do projeto, execute:
+Os dados ficam apenas no **`localStorage`** deste navegador. Não há login, API nem sincronização. Ao abrir pela primeira vez, o aplicativo carrega compras fictícias para avaliação; a opção **Restaurar exemplo** substitui os dados locais.
+
+## Executar
+
+Clone o repositório e selecione o branch da demonstração:
+
+```bash
+git switch prototype/mvp-completo
+```
+
+Abra o `index.html` com **Live Server** no VS Code, ou execute:
 
 ```bash
 python -m http.server 5500
 ```
 
-Acesse **http://localhost:5500**. Também é possível utilizar a extensão Live Server do VS Code. Se o navegador bloquear módulos ES ao abrir arquivos diretamente pelo sistema (`file://`), utilize o servidor local.
+Depois acesse `http://localhost:5500`. Não abra o arquivo via `file://`, pois os módulos ES exigem um servidor local.
 
-## Arquitetura do protótipo
+## Organização
 
 ```text
-index.html                # Interface principal e navegação
-src/css/tokens.css        # Paleta e tokens de design originais
-src/css/mvp.css           # Layout completo e responsivo do protótipo
-src/js/mvp.js             # Lógica TEMPORÁRIA criada para avaliação
-src/js/app.js             # Reservado à futura implementação do aluno
+index.html
+src/
+  css/
+    tokens.css       # identidade Cestou Fresh
+    base.css         # estilos globais
+    shell.css        # navegação e layout responsivo
+    components.css   # componentes, formulários e diálogos
+    pages.css        # compras, mercados, itens e coleta de preços
+    comparison.css   # cartões por produto e listas finais
+  js/
+    app.js           # reservado à futura implementação do aluno
+    prototype/       # JavaScript TEMPORÁRIO de avaliação, escrito por IA
+      app.js
+      data.js
+      pricing.js
+      dialog.js
+      views/
+        shared.js
+        purchases.js
+        workflow.js
+docs/
+  decisoes-do-produto.md
 ```
 
-## Próximos passos após avaliação
-
-1. Revisar telas, fluxos de uso, textos e regras de negócios.
-2. Congelar a interface aprovada como referência visual e funcional.
-3. Remover `src/js/mvp.js` e a referência a ele no HTML.
-4. Planejar exercícios graduais para o aluno implementar `src/js/app.js` e os módulos necessários.
-5. Preservar a documentação do protótipo como referência de requisitos, distinguindo claramente a autoria.
+A especificação detalhada de regras e casos de borda está em [docs/decisoes-do-produto.md](docs/decisoes-do-produto.md).
 
 ---
 
-**Finalidade pedagógica:** na versão educacional definitiva, **HTML e CSS são desenvolvidos com auxílio do ChatGPT, enquanto a lógica JavaScript é desenvolvida pelo aluno**. A versão demonstrativa completa é uma etapa excepcional de avaliação e não representa a autoria futura da lógica.
+**Finalidade do projeto:** aprendizado do aluno em JavaScript, com HTML/CSS preparados com auxílio de IA. A implementação completa por IA neste branch é apenas um protótipo temporário de produto e experiência visual.
