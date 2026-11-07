@@ -1,117 +1,116 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#F8F9F4" />
-    <meta name="description" content="Cestou: organize suas compras e compare preços por produto entre mercados." />
-    <title>Cestou | Comparador de mercados</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./src/css/tokens.css" />
-    <link rel="stylesheet" href="./src/css/base.css" />
-    <link rel="stylesheet" href="./src/css/layout.css" />
-    <link rel="stylesheet" href="./src/css/components.css" />
-    <script type="module" src="./src/js/app.js"></script>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f8f9f4" />
+  <meta name="description" content="Cestou: projeto educacional de comparação de preços por produto entre mercados." />
+  <title>Cestou — Meus mercados</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./src/css/tokens.css" />
+  <link rel="stylesheet" href="./src/css/base.css" />
+  <link rel="stylesheet" href="./src/css/shell.css" />
+  <link rel="stylesheet" href="./src/css/components.css" />
+  <link rel="stylesheet" href="./src/css/pages.css" />
+  <link rel="stylesheet" href="./src/css/comparison.css" />
+  <script type="module" src="./src/js/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#app">Ir para o conteúdo</a>
+  <header class="site-header">
+    <div class="container header-content">
+      <a class="brand" href="#mercados" aria-label="Cestou — Meus mercados">
+        <span class="brand-symbol" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+            stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m5 10 2.3 9h9.4l2.3-9H5Z" />
+            <path d="m8.1 10 3.9-6 3.9 6" />
+            <path d="M10 14v2.5M14 14v2.5" />
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <strong>cestou<span>.</span></strong>
+          <small>Compare. Economize. Compre.</small>
+        </span>
+      </a>
+      <nav class="desktop-navigation" aria-label="Navegação principal">
+        <a class="nav-active" href="#mercados" aria-current="page">Mercados</a>
+      </nav>
+      <span class="header-label">Projeto educacional · Etapa 01</span>
+    </div>
+  </header>
 
-  <body>
-    <header class="site-header">
-      <div class="container brand-bar">
-        <a class="brand" href="./index.html" aria-label="Cestou — início">
-          <span class="brand-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
-              stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-              <path d="m5 10 2.3 9h9.4l2.3-9H5Z"/>
-              <path d="m8.1 10 3.9-6 3.9 6"/>
-              <path d="M10 14v2.5M14 14v2.5"/>
-            </svg>
-          </span>
-          <span class="brand-lockup">
-            <strong class="brand-name">cestou<span class="brand-dot">.</span></strong>
-            <span class="brand-tagline">Compare. Economize. Compre.</span>
-          </span>
-        </a>
-        <span class="phase-label">MVP em construção</span>
-      </div>
-    </header>
-
-    <main class="container main-content" id="conteudo">
-      <div class="page-heading">
-        <span class="eyebrow"><span class="eyebrow-mark" aria-hidden="true"></span> Etapa 01 · Mercados</span>
-        <h1>Meus mercados</h1>
-        <p>Cadastre seus mercados favoritos. Em cada compra, você poderá comparar preços entre até quatro deles.</p>
+  <!-- Ponto de partida educacional. As outras telas serão construídas conforme
+       o aluno implementar a lógica; os estilos aprovados já estão disponíveis. -->
+  <main id="app" class="container app-content" tabindex="-1">
+    <section id="mercados" aria-labelledby="markets-title">
+      <div class="page-header">
+        <div>
+          <p class="eyebrow">Seu cadastro</p>
+          <h1 id="markets-title">Meus mercados</h1>
+          <p>Cadastre os lugares onde você costuma comprar. Mais tarde, poderá selecionar até quatro para cada comparação.</p>
+        </div>
       </div>
 
       <div class="market-layout">
-        <section class="panel" aria-labelledby="add-market-title">
+        <section class="panel market-add" aria-labelledby="add-market-title">
           <div class="panel-heading">
             <h2 id="add-market-title">Adicionar mercado</h2>
-            <p>Escolha um nome fácil de identificar na hora de comprar.</p>
+            <p>Use um nome fácil de reconhecer.</p>
           </div>
-
-          <form class="market-form" id="form-mercado">
-            <div class="field">
-              <label for="mercado-nome">Nome do mercado</label>
-              <input
-                id="mercado-nome"
-                name="nome"
-                type="text"
-                placeholder="Ex.: Supermercado Central"
-                maxlength="60"
-                autocomplete="off"
-                required
-              />
-            </div>
-            <p id="mensagem-mercado" class="form-message" role="status" aria-live="polite"></p>
-            <button class="button button-primary" type="submit">
-              <span aria-hidden="true" class="button-plus">+</span>
-              Adicionar mercado
-            </button>
+          <form id="form-mercado" class="form">
+            <label class="field" for="mercado-nome">
+              <span>Nome do mercado</span>
+              <input id="mercado-nome" name="nome" type="text" maxlength="60"
+                placeholder="Ex.: Mercado Central" autocomplete="off" required />
+            </label>
+            <p id="mensagem-mercado" class="form-feedback" role="status" aria-live="polite"></p>
+            <button class="button button-primary" type="submit">+ Adicionar mercado</button>
           </form>
         </section>
 
-        <section class="panel" aria-labelledby="list-title">
-          <div class="panel-heading list-heading">
+        <section class="panel market-collection" aria-labelledby="market-list-title">
+          <div class="panel-heading panel-title-row">
             <div>
-              <h2 id="list-title">Mercados cadastrados</h2>
-              <p>Você poderá reutilizá-los em diferentes compras.</p>
+              <h2 id="market-list-title">Mercados cadastrados</h2>
+              <p>Reutilize seus mercados em diferentes compras.</p>
             </div>
-            <span id="total-mercados" class="count-chip">0 mercados</span>
+            <span id="total-mercados" class="count-pill" aria-live="polite">0 mercados</span>
           </div>
-
-          <div class="market-list-area">
-            <div id="mercados-vazio" class="empty-state">
-              <span class="empty-illustration" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor"
-                  stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 10h18l-1.6-5H4.6L3 10Z" />
-                  <path d="M5 10v9h14v-9" />
-                  <path d="M9 19v-6h6v6" />
-                </svg>
-              </span>
-              <strong>Nenhum mercado cadastrado</strong>
-              <p>Adicione seu primeiro mercado para começar.</p>
-            </div>
-            <ul id="lista-mercados" class="market-list" aria-label="Lista de mercados cadastrados"></ul>
+          <div id="mercados-vazio" class="empty-state">
+            <span class="empty-icon" aria-hidden="true">▣</span>
+            <strong>Nenhum mercado cadastrado</strong>
+            <p>Adicione seu primeiro mercado para começar.</p>
           </div>
+          <div id="lista-mercados" class="market-rows" role="list" aria-label="Mercados cadastrados"></div>
         </section>
       </div>
 
-      <aside class="next-step" aria-label="Próxima etapa de desenvolvimento">
-        <span class="next-step-mark" aria-hidden="true">02</span>
-        <div>
-          <strong>Próxima etapa: suas compras</strong>
-          <p>Depois do cadastro, vamos criar compras, adicionar produtos e selecionar os mercados da comparação.</p>
-        </div>
+      <aside class="sample-note" aria-label="Próximo passo de desenvolvimento">
+        <span aria-hidden="true">ⓘ</span>
+        <p>Próxima etapa: criar compras, adicionar produtos e escolher os mercados participantes.</p>
       </aside>
-    </main>
+    </section>
+  </main>
 
-    <footer class="site-footer">
-      <div class="container">
-        Projeto educacional · HTML e CSS desenvolvidos com auxílio de IA; lógica JavaScript desenvolvida pelo aluno.
-      </div>
-    </footer>
-  </body>
+  <nav class="mobile-navigation" aria-label="Navegação inferior">
+    <a class="nav-active" href="#mercados" aria-current="page">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 10h18l-2-6H5l-2 6Z" />
+        <path d="M5 10v10h14V10" />
+        <path d="M9 20v-7h6v7" />
+      </svg>
+      <span>Mercados</span>
+    </a>
+  </nav>
+
+  <footer class="site-footer">
+    <div class="container">
+      Projeto educacional · HTML e CSS desenvolvidos com auxílio de IA; JavaScript desenvolvido pelo aluno.
+    </div>
+  </footer>
+</body>
 </html>

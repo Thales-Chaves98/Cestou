@@ -1,34 +1,51 @@
 # Cestou 🛒
 
-**Projeto educacional de desenvolvimento web**, criado para praticar JavaScript por meio de uma aplicação real: um comparador de preços entre mercados.
+**Projeto educacional para aprender JavaScript**, construindo um comparador de preços entre mercados com foco em uso no celular.
 
-O objetivo é aprender construindo, evoluindo o projeto em etapas, com foco em código organizado e na experiência em dispositivos móveis. Esta primeira versão é voltada ao estudo e ao uso pessoal.
+## Autoria e proposta de aprendizagem
 
-## Autoria e uso de inteligência artificial
-
-> **Este projeto tem finalidade de aprendizado.**
+> **HTML e CSS:** a estrutura visual, a identidade *Cestou Fresh* e a interface responsiva foram desenvolvidas com auxílio do **ChatGPT (inteligência artificial)**.
 >
-> **HTML e CSS:** a estrutura visual, o layout responsivo e a estilização são desenvolvidos com auxílio do **ChatGPT (inteligência artificial)**.
->
-> **JavaScript:** a **lógica de programação e as funcionalidades são desenvolvidas pelo aluno**, que é o responsável por implementar o comportamento da aplicação.
+> **JavaScript:** toda a **lógica de programação e as funcionalidades da versão educacional serão implementadas pelo aluno**, como parte do estudo.
 
-O ChatGPT também participa como **mentor e revisor**, explicando conceitos, propondo exercícios e avaliando o código escrito pelo aluno. A lógica JavaScript do aluno não deve ser alterada pela IA sem solicitação explícita.
+O ChatGPT participa como mentor, responsável pelo design e revisor do código do aluno. Ele **não modifica o JavaScript do aluno sem solicitação explícita**.
 
-A distinção entre as partes feitas com apoio de IA e o trabalho de programação do aluno é intencional e faz parte da proposta de aprendizagem deste repositório.
+Antes do início dos exercícios, foi desenvolvido um **protótipo temporário completo com auxílio de IA**, incluindo JavaScript, apenas para avaliar o produto e aprovar a experiência. Após a aprovação, o JavaScript demonstrativo foi retirado da estrutura ativa da versão educacional. **A autoria daquela demonstração não deve ser atribuída ao aluno.**
 
-## Sobre o aplicativo
+## Ideia do aplicativo
 
-O Cestou permitirá cadastrar mercados, criar uma lista de compras, registrar preços e comparar cada produto entre **até quatro mercados por compra**. Ao finalizar, serão geradas listas agrupadas por mercado, colocando cada produto onde foi encontrado o menor preço informado.
+O Cestou permitirá cadastrar mercados, criar compras e informar preços dos produtos. O resultado será dividido em **listas por mercado**, com cada item atribuído ao mercado com menor preço informado — não ao mercado com menor valor total da compra.
 
-O desenvolvimento será incremental: começaremos com um MVP simples e adicionaremos recursos conforme o aprendizado avançar.
+A experiência aprovada é **mobile-first**: registro de preços por mercado, comparação em cartões compactos **por produto**, até **quatro mercados por compra**, valores mais baixos em verde, tratamento de empates, confirmação de preços pendentes e possibilidade de reabrir uma compra finalizada como rascunho.
 
 ## Tecnologias
 
-- HTML5 — estrutura da interface.
-- CSS3 — identidade visual e layout mobile-first.
-- JavaScript (ES Modules) — lógica escrita pelo aluno.
-- localStorage — persistência local prevista para o MVP.
+- HTML5 e CSS3 (interface preparada com auxílio de IA);
+- JavaScript nativo com **ES Modules** (implementação do aluno);
+- `localStorage` para armazenar os dados, quando chegarmos a essa etapa.
+
+Sem framework ou backend no MVP.
+
+## Como executar
+
+Abra o projeto no VS Code com **Live Server**, ou execute:
+
+```bash
+python -m http.server 5500
+```
+
+Acesse `http://localhost:5500`. Utilize um servidor local porque o JavaScript é carregado como módulo.
+
+## Ponto de partida educacional
+
+A primeira tela é **Meus mercados**. O HTML e o CSS já estão preparados; `src/js/app.js` é o ponto de entrada reservado ao aluno.
+
+Na etapa inicial, o aluno implementará o cadastro e a renderização dos mercados. A lógica ainda **não está pronta** — isso é intencional. As telas de compras, preços, comparação e listas serão retomadas incrementalmente conforme o aprendizado.
+
+O CSS aprovado está organizado em arquivos pequenos por responsabilidade: `tokens.css`, `base.css`, `shell.css`, `components.css`, `pages.css` e `comparison.css`. O JavaScript também será separado em módulos por funcionalidades quando fizer sentido.
+
+As regras aprovadas estão em [docs/decisoes-do-produto.md](docs/decisoes-do-produto.md). A organização visual está resumida em [docs/telas-aprovadas.md](docs/telas-aprovadas.md).
 
 ---
 
-**Cestou — projeto de aprendizado em JavaScript, com interface HTML/CSS assistida por IA e lógica desenvolvida pelo aluno.**
+**Cestou — aprendizado em JavaScript com HTML/CSS criados com auxílio de IA e lógica escrita pelo aluno.**
