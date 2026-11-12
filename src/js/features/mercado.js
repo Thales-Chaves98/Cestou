@@ -1,6 +1,6 @@
 const nomeMercado = document.getElementById('mercado-nome');
 const formMercado = document.getElementById('form-mercado');
-
+ 
 
 let mercados = [];
 
@@ -15,15 +15,33 @@ formMercado.addEventListener('submit', (e) => {
 
 
 function adicionarMercado() {
-
-    const nome = nomeMercado.value;
-
+    const nome = nomeMercado.value.trim().toUpperCase();
 
     const mercado = {
-        id: idMercado++,
+        id: proximoId(mercados),
         nome
     };
 
     mercados.push(mercado);
     nomeMercado.value = '';
+}
+
+function proximoId(array) {
+    let maiorId = 0;
+
+    for(let i = 0; i < array.length; i++) {
+        if(maiorId < array[i].id){
+            maiorId = array[i].id;
+        }
+    }
+
+    return maiorId + 1;
+} //provisorio        !!!!!!
+
+function renderizarMercados() {
+
+    if(mercados.length > 0) {
+
+    }
+
 }
