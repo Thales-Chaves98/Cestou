@@ -8,8 +8,6 @@ const totalMercados = document.getElementById('total-mercados');
 
 let mercados = [];
 
-let idMercado = 0;
-
 
 formMercado.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -23,26 +21,17 @@ function adicionarMercado() {
     const nome = nomeMercado.value.trim().toUpperCase();
 
     const mercado = {
-        id: proximoId(mercados),
+        id: crypto.randomUUID(),
         nome
     };
 
-    mercados.push(mercado);
+    if(nome !== '') {
+        mercados.push(mercado);
+    }
     nomeMercado.value = '';
     atualizarContador();
 }
 
-function proximoId(array) {
-    let maiorId = 0;
-
-    for(let i = 0; i < array.length; i++) {
-        if(maiorId < array[i].id){
-            maiorId = array[i].id;
-        }
-    }
-
-    return maiorId + 1;
-} //provisorio        !!!!!!
 
 function renderizarMercados() {
 
@@ -52,11 +41,13 @@ function renderizarMercados() {
         mercadoVazio.style.display = 'block';
     }
 
-    const mercadosUL = document.createElement('ul');
-    const mercadoLI = document.createElement('li');
+    listaMercados.innerHTML = '';
 
+    const mercadosUL = document.createElement('ul');
+    
     mercados.forEach((mercado) => {
-        mercadoLI.innerHTML = mercado.nome;
+        const mercadoLI = document.createElement('li');
+        mercadoLI.textContent = mercado.nome;
 
         mercadosUL.append(mercadoLI);
     })
