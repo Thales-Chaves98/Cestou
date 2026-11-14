@@ -51,6 +51,17 @@ function renderizarMercados() {
     } else {
         mercadoVazio.style.display = 'block';
     }
+
+    const mercadosUL = document.createElement('ul');
+    const mercadoLI = document.createElement('li');
+
+    mercados.forEach((mercado) => {
+        mercadoLI.innerHTML = mercado.nome;
+
+        mercadosUL.append(mercadoLI);
+    })
+    
+    listaMercados.append(mercadosUL);
 }
 
 function atualizarContador(){
