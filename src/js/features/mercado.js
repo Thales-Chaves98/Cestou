@@ -1,3 +1,5 @@
+import './services/storage.js';
+
 const nomeMercado = document.getElementById('mercado-nome');
 const formMercado = document.getElementById('form-mercado');
  
@@ -30,10 +32,12 @@ function adicionarMercado() {
     }
     nomeMercado.value = '';
     atualizarContador();
+    salvarMercados(mercados);
 }
 
 
 function renderizarMercados() {
+    carregarMercados();
 
     if(mercados.length > 0) {
         mercadoVazio.style.display = 'none';
@@ -56,6 +60,8 @@ function renderizarMercados() {
 }
 
 function atualizarContador(){
+    carregarMercados();
+
     if(mercados.length === 1) {
         totalMercados.innerHTML = `${mercados.length} MERCADO`;
     } else {
