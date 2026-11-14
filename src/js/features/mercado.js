@@ -1,4 +1,4 @@
-import './services/storage.js';
+import {salvarMercados, carregarMercados} from '../services/storage.js';
 
 const nomeMercado = document.getElementById('mercado-nome');
 const formMercado = document.getElementById('form-mercado');
@@ -8,7 +8,7 @@ const listaMercados = document.getElementById('lista-mercados');
 
 const totalMercados = document.getElementById('total-mercados');
 
-let mercados = [];
+let mercados = carregarMercados();
 
 
 formMercado.addEventListener('submit', (e) => {
@@ -29,15 +29,14 @@ function adicionarMercado() {
 
     if(nome !== '') {
         mercados.push(mercado);
+        salvarMercados(mercados);
     }
     nomeMercado.value = '';
     atualizarContador();
-    salvarMercados(mercados);
 }
 
 
 function renderizarMercados() {
-    carregarMercados();
 
     if(mercados.length > 0) {
         mercadoVazio.style.display = 'none';
@@ -60,7 +59,6 @@ function renderizarMercados() {
 }
 
 function atualizarContador(){
-    carregarMercados();
 
     if(mercados.length === 1) {
         totalMercados.innerHTML = `${mercados.length} MERCADO`;
