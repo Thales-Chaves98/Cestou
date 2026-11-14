@@ -48,10 +48,18 @@ function renderizarMercados() {
 
     const mercadosUL = document.createElement('ul');
     
-    mercados.forEach((mercado) => {
+    mercados.forEach((m) => {
         const mercadoLI = document.createElement('li');
-        mercadoLI.textContent = mercado.nome;
+        const nomeMercado = document.createElement('span');
+        const acoesMercado = document.createElement('span');
 
+        nomeMercado.innerHTML = m.nome;
+        nomeMercado.classList.add('market-name');
+
+        acoesMercado.innerHTML = `<button class="market-action" data-id="${m.id}">Editar</button> <button class="market-action market-action-danger" data-id="${m.id}">Excluir</button>`;
+        acoesMercado.classList.add('market-actions');
+        
+        mercadoLI.append(nomeMercado, acoesMercado);
         mercadosUL.append(mercadoLI);
     })
     
@@ -66,6 +74,7 @@ function atualizarContador(){
         totalMercados.innerHTML = `${mercados.length} MERCADOS`;
     }
 }
+
 
 renderizarMercados();
 atualizarContador();
