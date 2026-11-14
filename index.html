@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="./src/css/shell.css" />
   <link rel="stylesheet" href="./src/css/components.css" />
   <link rel="stylesheet" href="./src/css/pages.css" />
+  <link rel="stylesheet" href="./src/css/markets.css" />
   <link rel="stylesheet" href="./src/css/comparison.css" />
   <script type="module" src="./src/js/app.js"></script>
 </head>
@@ -38,7 +39,7 @@
       <nav class="desktop-navigation" aria-label="Navegação principal">
         <a class="nav-active" href="#mercados" aria-current="page">Mercados</a>
       </nav>
-      <span class="header-label">Projeto educacional · Etapa 01</span>
+      <span class="header-label">Projeto educacional · Etapa 03</span>
     </div>
   </header>
 
@@ -106,6 +107,41 @@
       <span>Mercados</span>
     </a>
   </nav>
+
+
+  <!-- A estrutura das janelas é HTML/CSS; abertura, validação e salvamento serão feitos pelo aluno. -->
+  <dialog id="dialog-editar-mercado" class="market-dialog" aria-labelledby="titulo-editar-mercado">
+    <form id="form-editar-mercado" class="market-dialog-form">
+      <div class="market-dialog-heading">
+        <h2 id="titulo-editar-mercado">Editar mercado</h2>
+        <button id="fechar-edicao-mercado" class="icon-button" type="button" aria-label="Fechar edição">×</button>
+      </div>
+      <p class="market-dialog-description">Altere o nome do mercado. O identificador permanece o mesmo.</p>
+      <label class="field" for="editar-mercado-nome">
+        <span>Nome do mercado</span>
+        <input id="editar-mercado-nome" name="nome" type="text" maxlength="60" autocomplete="off" required />
+      </label>
+      <p id="mensagem-editar-mercado" class="form-feedback" role="status" aria-live="polite"></p>
+      <div class="market-dialog-actions">
+        <button id="cancelar-edicao-mercado" class="button button-subtle" type="button">Cancelar</button>
+        <button class="button button-primary" type="submit">Salvar alterações</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="dialog-excluir-mercado" class="market-dialog" aria-labelledby="titulo-excluir-mercado">
+    <form id="form-excluir-mercado" class="market-dialog-form">
+      <div class="market-dialog-heading">
+        <h2 id="titulo-excluir-mercado">Excluir mercado</h2>
+        <button id="fechar-exclusao-mercado" class="icon-button" type="button" aria-label="Fechar exclusão">×</button>
+      </div>
+      <p id="excluir-mercado-descricao" class="market-dialog-description">Deseja excluir este mercado?</p>
+      <div class="market-dialog-actions">
+        <button id="cancelar-exclusao-mercado" class="button button-subtle" type="button">Cancelar</button>
+        <button id="confirmar-exclusao-mercado" class="button button-danger-solid" type="submit">Excluir mercado</button>
+      </div>
+    </form>
+  </dialog>
 
   <footer class="site-footer">
     <div class="container">
