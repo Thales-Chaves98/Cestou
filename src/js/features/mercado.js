@@ -68,3 +68,4 @@ function atualizarContador(){
 }
 
 renderizarMercados();
+atualizarContador();
