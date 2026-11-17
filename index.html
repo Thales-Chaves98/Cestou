@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#f8f9f4" />
   <meta name="description" content="Cestou: projeto educacional de comparação de preços por produto entre mercados." />
-  <title>Cestou — Meus mercados</title>
+  <title>Cestou — Minhas compras</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="./src/css/components.css" />
   <link rel="stylesheet" href="./src/css/pages.css" />
   <link rel="stylesheet" href="./src/css/markets.css" />
+  <link rel="stylesheet" href="./src/css/purchases.css" />
   <link rel="stylesheet" href="./src/css/comparison.css" />
   <script type="module" src="./src/js/app.js"></script>
 </head>
@@ -22,7 +23,7 @@
   <a class="skip-link" href="#app">Ir para o conteúdo</a>
   <header class="site-header">
     <div class="container header-content">
-      <a class="brand" href="#mercados" aria-label="Cestou — Meus mercados">
+      <a class="brand" href="#compras" aria-label="Cestou — Minhas compras">
         <span class="brand-symbol" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
             stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
@@ -37,16 +38,90 @@
         </span>
       </a>
       <nav class="desktop-navigation" aria-label="Navegação principal">
-        <a class="nav-active" href="#mercados" aria-current="page">Mercados</a>
+        <a href="#compras">Compras</a>
+        <a href="#mercados">Mercados</a>
       </nav>
-      <span class="header-label">Projeto educacional · Etapa 03</span>
+      <span class="header-label">Projeto educacional · Etapa 04</span>
     </div>
   </header>
 
-  <!-- Ponto de partida educacional. As outras telas serão construídas conforme
-       o aluno implementar a lógica; os estilos aprovados já estão disponíveis. -->
+  <!-- Etapas educacionais: tela de compras e tela de mercados coexistem no DOM.
+       A navegação visual funciona via CSS; o aluno implementará a lógica das compras. -->
   <main id="app" class="container app-content" tabindex="-1">
-    <section id="mercados" aria-labelledby="markets-title">
+    <!-- Etapa 4: tela de compras preparada em HTML/CSS.
+         Os dados e os eventos serão implementados pelo aluno em compras.js. -->
+    <section id="compras" class="app-view" aria-labelledby="compras-title">
+      <div class="page-header">
+        <div>
+          <p class="eyebrow">Seu planejamento</p>
+          <h1 id="compras-title">Minhas compras</h1>
+          <p>Crie suas compras e organize tudo antes de comparar os preços nos mercados.</p>
+        </div>
+        <button id="abrir-nova-compra" class="button button-primary" type="button">
+          <span aria-hidden="true">+</span> Nova compra
+        </button>
+      </div>
+
+      <section class="overview-banner" aria-labelledby="compras-banner-title">
+        <div class="overview-copy">
+          <span class="overview-kicker">Sua compra, mais econômica</span>
+          <h2 id="compras-banner-title">Compare os preços do seu jeito.</h2>
+          <p>Monte sua lista, registre preços e descubra o melhor mercado para cada produto.</p>
+        </div>
+        <div class="overview-figures" aria-label="Resumo das compras">
+          <div><strong id="resumo-compras">0</strong><span>compras</span></div>
+          <div><strong id="resumo-rascunhos">0</strong><span>rascunhos</span></div>
+          <div><strong id="resumo-finalizadas">0</strong><span>finalizadas</span></div>
+        </div>
+      </section>
+
+      <div class="content-heading">
+        <h2 id="compras-lista-titulo">Suas comparações</h2>
+        <span id="total-compras" class="count-pill" aria-live="polite">0 compras</span>
+      </div>
+
+      <div id="compras-vazio" class="empty-state panel" aria-live="polite">
+        <span class="empty-icon" aria-hidden="true">▤</span>
+        <strong>Nenhuma compra cadastrada</strong>
+        <p>Comece criando uma compra. Depois você poderá adicionar os produtos e selecionar os mercados.</p>
+      </div>
+
+      <div id="lista-compras" class="purchase-list" role="list"
+        aria-labelledby="compras-lista-titulo"></div>
+
+      <!-- O aluno poderá clonar este modelo ao renderizar suas compras,
+           preenchendo o conteúdo com textContent. -->
+      <template id="modelo-compra">
+        <article class="purchase-card panel" role="listitem">
+          <div class="purchase-card-head">
+            <div class="purchase-card-main">
+              <h3 class="compra-nome"></h3>
+              <p class="compra-detalhes">0 produtos · 0 mercados</p>
+            </div>
+            <span class="status-badge status-draft">Rascunho</span>
+          </div>
+          <div class="purchase-card-bottom">
+            <span class="purchase-date">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none"
+                stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="16" rx="2"></rect>
+                <path d="M7 3v4m10-4v4M3 10h18"></path>
+              </svg>
+              <span class="compra-data"></span>
+            </span>
+            <span class="purchase-caption">Aguardando produtos</span>
+          </div>
+        </article>
+      </template>
+
+      <aside class="sample-note" aria-label="Etapa atual do desenvolvimento">
+        <span aria-hidden="true">ⓘ</span>
+        <p>Nesta etapa, vamos criar compras em rascunho. Produtos, mercados participantes e comparação virão depois.</p>
+      </aside>
+    </section>
+
+    <section id="mercados" class="app-view" aria-labelledby="markets-title">
       <div class="page-header">
         <div>
           <p class="eyebrow">Seu cadastro</p>
@@ -91,23 +166,59 @@
 
       <aside class="sample-note" aria-label="Próximo passo de desenvolvimento">
         <span aria-hidden="true">ⓘ</span>
-        <p>Próxima etapa: criar compras, adicionar produtos e escolher os mercados participantes.</p>
+        <p>Use estes mercados nas próximas etapas para comparar o preço de cada produto.</p>
       </aside>
     </section>
   </main>
 
+
   <nav class="mobile-navigation" aria-label="Navegação inferior">
-    <a class="nav-active" href="#mercados" aria-current="page">
+    <a href="#compras">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M3 10h18l-2-6H5l-2 6Z" />
-        <path d="M5 10v10h14V10" />
-        <path d="M9 20v-7h6v7" />
+        <path d="m4 9 2.1 11h11.8L20 9H4Z"></path>
+        <path d="m8 9 4-6 4 6"></path>
+      </svg>
+      <span>Compras</span>
+    </a>
+    <a href="#mercados">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 10h18l-2-6H5l-2 6Z"></path>
+        <path d="M5 10v10h14V10"></path>
+        <path d="M9 20v-7h6v7"></path>
       </svg>
       <span>Mercados</span>
     </a>
   </nav>
 
+
+
+
+  <!-- Janela de criação da compra: os eventos e a validação serão implementados pelo aluno. -->
+  <dialog id="dialog-nova-compra" class="purchase-dialog" aria-labelledby="nova-compra-titulo">
+    <form id="form-compra" class="purchase-dialog-form">
+      <div class="purchase-dialog-heading">
+        <h2 id="nova-compra-titulo">Nova compra</h2>
+        <button id="fechar-nova-compra" class="icon-button" type="button"
+          aria-label="Fechar janela">×</button>
+      </div>
+      <p class="purchase-dialog-description">
+        Dê um nome para organizar sua compra. Você poderá adicionar os produtos depois.
+      </p>
+      <label class="field" for="compra-nome">
+        <span>Nome da compra</span>
+        <input id="compra-nome" name="nome" type="text" maxlength="70"
+          placeholder="Ex.: Compra da semana" autocomplete="off" required />
+      </label>
+      <p id="mensagem-compra" class="form-feedback" role="status" aria-live="polite"></p>
+      <div class="purchase-dialog-actions">
+        <button id="cancelar-nova-compra" class="button button-subtle"
+          type="button">Cancelar</button>
+        <button class="button button-primary" type="submit">Criar compra</button>
+      </div>
+    </form>
+  </dialog>
 
   <!-- A estrutura das janelas é HTML/CSS; abertura, validação e salvamento serão feitos pelo aluno. -->
   <dialog id="dialog-editar-mercado" class="market-dialog" aria-labelledby="titulo-editar-mercado">
