@@ -10,6 +10,7 @@ const totalMercados = document.getElementById('total-mercados');
 
 const editarMercadoDialog = document.getElementById('dialog-editar-mercado');
 const editarMercadoNome = document.getElementById('editar-mercado-nome');
+const fecharEdicaoMercado = document.getElementById('fechar-edicao-mercado');
 const cancelarEdicaoMercado = document.getElementById('cancelar-edicao-mercado');
 
 const excluirMercadoDialog = document.getElementById('dialog-excluir-mercado');
@@ -50,9 +51,10 @@ editarMercadoDialog.addEventListener('submit', (e) => {
 
     const editingMercado = mercados.find((m) => m.id === editingMercadoId);
 
-    editingMercado.nome = editarMercadoNome.value.trim().toUpperCase();
+    const novoNome = editarMercadoNome.value.trim().toUpperCase();
 
     if(editingMercado.nome !== '') {
+        editingMercado.nome = novoNome;
         salvarMercados(mercados);
         renderizarMercados();
         editarMercadoDialog.close();
@@ -64,6 +66,14 @@ editarMercadoDialog.addEventListener('submit', (e) => {
 });
 
 cancelarEdicaoMercado.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    editarMercadoDialog.close();
+    editingMercadoId = null;
+    editarMercadoNome.value = '';
+});
+
+fecharEdicaoMercado.addEventListener('click', (e) => {
     e.preventDefault();
 
     editarMercadoDialog.close();
@@ -84,6 +94,7 @@ fecharExclusaoMercado.addEventListener('click', (e) => {
     excluirMercadoDialog.close();
     deletingMercadoId = null;
 });
+
 
 confirmarExclusaoMercado.addEventListener('click', (e) => {
     e.preventDefault();
@@ -130,7 +141,7 @@ function renderizarMercados() {
         const nomeMercado = document.createElement('span');
         const acoesMercado = document.createElement('span');
 
-        nomeMercado.innerHTML = m.nome;
+        nomeMercado.textContent = m.nome;
         nomeMercado.classList.add('market-name');
 
         acoesMercado.innerHTML = `<button class="market-action editar-mercado" data-id="${m.id}">Editar</button> <button class="market-action market-action-danger excluir-mercado" data-id="${m.id}">Excluir</button>`;
