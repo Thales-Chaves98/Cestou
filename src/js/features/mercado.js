@@ -53,7 +53,7 @@ editarMercadoDialog.addEventListener('submit', (e) => {
 
     const novoNome = editarMercadoNome.value.trim().toUpperCase();
 
-    if(editingMercado.nome !== '') {
+    if(novoNome !== '') {
         editingMercado.nome = novoNome;
         salvarMercados(mercados);
         renderizarMercados();
