@@ -8,8 +8,19 @@ const listaMercados = document.getElementById('lista-mercados');
 
 const totalMercados = document.getElementById('total-mercados');
 
+const editarMercadoDialog = document.getElementById('dialog-editar-mercado');
+const editarMercadoNome = document.getElementById('editar-mercado-nome');
+const cancelarEdicaoMercado = document.getElementById('cancelar-edicao-mercado');
+
+const excluirMercadoDialog = document.getElementById('dialog-excluir-mercado');
+const cancelarExclusaoMercado = document.getElementById('cancelar-exclusao-mercado');
+const fecharExclusaoMercado = document.getElementById('fechar-exclusao-mercado');
+const confirmarExclusaoMercado = document.getElementById('confirmar-exclusao-mercado');
+
 let mercados = carregarMercados();
 
+let editingMercadoId = null;
+let deletingMercadoId = null;
 
 formMercado.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -18,6 +29,73 @@ formMercado.addEventListener('submit', (e) => {
     console.log(mercados);
 });
 
+listaMercados.addEventListener('click', (e) => {
+    const target = e.target;
+
+    if(target.classList.contains('market-action')) {
+        const id = target.dataset.id;
+
+        if(target.classList.contains('editar-mercado')) {
+            abrirEditarMercado(id);
+        }
+        if(target.classList.contains('excluir-mercado')) {
+            abrirExcluirMercado(id);
+        }
+    }
+});
+
+
+editarMercadoDialog.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const editingMercado = mercados.find((m) => m.id === editingMercadoId);
+
+    editingMercado.nome = editarMercadoNome.value.trim().toUpperCase();
+
+    if(editingMercado.nome !== '') {
+        salvarMercados(mercados);
+        renderizarMercados();
+        editarMercadoDialog.close();
+
+        editingMercadoId = null;
+        editarMercadoNome.value = '';
+    };
+
+});
+
+cancelarEdicaoMercado.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    editarMercadoDialog.close();
+    editingMercadoId = null;
+    editarMercadoNome.value = '';
+});
+
+cancelarExclusaoMercado.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    excluirMercadoDialog.close();
+    deletingMercadoId = null;
+});
+
+fecharExclusaoMercado.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    excluirMercadoDialog.close();
+    deletingMercadoId = null;
+});
+
+confirmarExclusaoMercado.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    mercados = mercados.filter((m) => m.id !== deletingMercadoId);
+    salvarMercados(mercados);
+    renderizarMercados();
+    atualizarContador();
+
+    deletingMercadoId = null;
+    excluirMercadoDialog.close();
+});
 
 function adicionarMercado() {
     const nome = nomeMercado.value.trim().toUpperCase();
@@ -34,7 +112,6 @@ function adicionarMercado() {
     nomeMercado.value = '';
     atualizarContador();
 }
-
 
 function renderizarMercados() {
 
@@ -56,12 +133,12 @@ function renderizarMercados() {
         nomeMercado.innerHTML = m.nome;
         nomeMercado.classList.add('market-name');
 
-        acoesMercado.innerHTML = `<button class="market-action" data-id="${m.id}">Editar</button> <button class="market-action market-action-danger" data-id="${m.id}">Excluir</button>`;
+        acoesMercado.innerHTML = `<button class="market-action editar-mercado" data-id="${m.id}">Editar</button> <button class="market-action market-action-danger excluir-mercado" data-id="${m.id}">Excluir</button>`;
         acoesMercado.classList.add('market-actions');
         
         mercadoLI.append(nomeMercado, acoesMercado);
         mercadosUL.append(mercadoLI);
-    })
+    });
     
     listaMercados.append(mercadosUL);
 }
@@ -75,6 +152,17 @@ function atualizarContador(){
     }
 }
 
+function abrirEditarMercado(id) {
+    editingMercadoId = id;
+    editarMercadoDialog.showModal();
+
+    editarMercadoNome.value = mercados.find((m) => m.id === id).nome;
+}
+
+function abrirExcluirMercado(id) {
+    deletingMercadoId = id;
+    excluirMercadoDialog.showModal();
+}
 
 renderizarMercados();
 atualizarContador();
