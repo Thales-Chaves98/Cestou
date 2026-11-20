@@ -12,13 +12,16 @@ const comprasVazio = document.getElementById("compras-vazio");
 const listaCompras = document.getElementById("lista-compras");
 const totalCompras = document.getElementById("total-compras");
 
+const resumoCompras = document.getElementById("resumo-compras");
+const resumoRascunho = document.getElementById("resumo-rascunhos");
+const resumoFinalizadas = document.getElementById("resumo-finalizadas");
+
 
 let compras = carregarCompras();
 
 formCompra.addEventListener('submit', (e) => {
     e.preventDefault();
     adicionarCompra();
-    novaCompraDialog.close();
 });
 
 abrirNovaCompraBtn.addEventListener('click', (e) => {
@@ -52,11 +55,13 @@ function adicionarCompra(){
     if(nome !== ""){
         compras.push(compra);
         salvarCompras(compras);
+        novaCompraDialog.close();
     }
 
     nomeCompraInput.value = '';
     renderizarCompras();
-    atualizarContador();
+    atualizarContadores();
+    
 }
 
 function renderizarCompras(){
@@ -87,13 +92,21 @@ function renderizarCompras(){
     listaCompras.appendChild(CompraUL);
 }
 
-function atualizarContador(){
+function atualizarContadores(){
      if(compras.length === 1) {
         totalCompras.innerHTML = `${compras.length} COMPRA`;
     } else {
         totalCompras.innerHTML = `${compras.length} COMPRAS`;
     }
+
+    const rascunhoCount = compras.filter((c) => c.status === "rascunho").length;
+    const finalizadasCount = compras.filter((c) => c.status === "finalizada").length;
+
+    resumoRascunho.innerHTML = rascunhoCount;
+    resumoFinalizadas.innerHTML = finalizadasCount;
+    resumoCompras.innerHTML = compras.length;
 }
 
+
 renderizarCompras();
-atualizarContador();
+atualizarContadores();
