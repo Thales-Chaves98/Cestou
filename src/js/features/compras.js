@@ -8,19 +8,23 @@ const fecharJanelaNovaCompra = document.getElementById("fechar-nova-compra");
 const formCompra = document.getElementById("form-compra");
 const nomeCompraInput = document.getElementById("compra-nome");
 
-const comprasVazio = document.getElementById("compras-vazio");
 const listaCompras = document.getElementById("lista-compras");
+const comprasVazio = document.getElementById("compras-vazio");
 const totalCompras = document.getElementById("total-compras");
 
 const resumoCompras = document.getElementById("resumo-compras");
 const resumoRascunho = document.getElementById("resumo-rascunhos");
 const resumoFinalizadas = document.getElementById("resumo-finalizadas");
 
-const editarCompraBtn = document.getElementById("editar-compra");
-const excluirCompraBtn = document.getElementById("excluir-compra");
 const excluirCompraDialog = document.getElementById("dialog-excluir-compra");
+const fecharExclusaoCompra = document.getElementById("fechar-exclusao-compra");
+const cancelarExclusaoCompra = document.getElementById("cancelar-exclusao-compra");
 
 let compras = carregarCompras();
+
+let editingCompraId = null;
+let deletingCompraId = null;
+
 
 formCompra.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -44,8 +48,26 @@ fecharJanelaNovaCompra.addEventListener('click', (e) => {
     nomeCompraInput.value = '';
 });
 
-excluirCompraBtn.addEventListener('click', () => {
-    
+listaCompras.addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+
+    if(!btn) return;
+    if(btn.classList.contains('excluir-compra')){
+        excluirCompraDialog.showModal();
+        console.log('ID da compra a ser excluída:', deletingCompraId);
+    }
+});
+
+fecharExclusaoCompra.addEventListener('click', (e) => {
+    e.preventDefault();
+    excluirCompraDialog.close();
+    deletingCompraId = null;
+});
+
+cancelarExclusaoCompra.addEventListener('click', (e) => {
+    e.preventDefault();
+    excluirCompraDialog.close();
+    deletingCompraId = null;
 });
 
 function adicionarCompra(){
