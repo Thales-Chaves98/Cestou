@@ -131,3 +131,28 @@ body:has(#mercados:target) .mobile-navigation a[href="#mercados"] {
   .purchase-dialog-form { padding: 18px; }
   .purchase-dialog-actions .button { flex: 1 1 auto; }
 }
+
+/* Etapa 4.2 — ações em cada cartão (copiado de #modelo-compra). */
+#lista-compras .compra-acoes {
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  margin-top: 14px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#lista-compras .compra-acoes .button {
+  min-width: 94px;
+}
+
+#lista-compras .compra-acoes .button:focus-visible {
+  outline: 3px solid #79b99d;
+  outline-offset: 2px;
+}
+
+@media (max-width: 520px) {
+  #lista-compras .compra-acoes .button {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}

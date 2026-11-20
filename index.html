@@ -112,12 +112,21 @@
             </span>
             <span class="purchase-caption">Aguardando produtos</span>
           </div>
+          <!-- O aluno associa o ID da compra aos botões usando dataset.id na cópia. -->
+          <div class="purchase-actions compra-acoes">
+            <button class="button button-sm button-subtle editar-compra" type="button">
+              Editar
+            </button>
+            <button class="button button-sm button-danger excluir-compra" type="button">
+              Excluir
+            </button>
+          </div>
         </article>
       </template>
 
       <aside class="sample-note" aria-label="Etapa atual do desenvolvimento">
         <span aria-hidden="true">ⓘ</span>
-        <p>Nesta etapa, vamos criar compras em rascunho. Produtos, mercados participantes e comparação virão depois.</p>
+        <p>Agora vamos editar e excluir compras em rascunho. Produtos, mercados participantes e comparação virão depois.</p>
       </aside>
     </section>
 
@@ -216,6 +225,55 @@
         <button id="cancelar-nova-compra" class="button button-subtle"
           type="button">Cancelar</button>
         <button class="button button-primary" type="submit">Criar compra</button>
+      </div>
+    </form>
+  </dialog>
+
+
+  <!-- Etapa 4.2: janelas de edição e exclusão de compras.
+       Eventos, dados selecionados, validação e persistência são responsabilidade do aluno. -->
+  <dialog id="dialog-editar-compra" class="purchase-dialog" aria-labelledby="titulo-editar-compra">
+    <form id="form-editar-compra" class="purchase-dialog-form">
+      <div class="purchase-dialog-heading">
+        <h2 id="titulo-editar-compra">Editar compra</h2>
+        <button id="fechar-edicao-compra" class="icon-button" type="button"
+          aria-label="Fechar edição">×</button>
+      </div>
+      <p class="purchase-dialog-description">
+        Altere o nome da compra. O identificador e a data de criação permanecem os mesmos.
+      </p>
+      <label class="field" for="editar-compra-nome">
+        <span>Nome da compra</span>
+        <input id="editar-compra-nome" name="nome" type="text" maxlength="70"
+          autocomplete="off" required />
+      </label>
+      <p id="mensagem-editar-compra" class="form-feedback" role="status" aria-live="polite"></p>
+      <div class="purchase-dialog-actions">
+        <button id="cancelar-edicao-compra" class="button button-subtle" type="button">
+          Cancelar
+        </button>
+        <button class="button button-primary" type="submit">Salvar alterações</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="dialog-excluir-compra" class="purchase-dialog" aria-labelledby="titulo-excluir-compra">
+    <form id="form-excluir-compra" class="purchase-dialog-form">
+      <div class="purchase-dialog-heading">
+        <h2 id="titulo-excluir-compra">Excluir compra</h2>
+        <button id="fechar-exclusao-compra" class="icon-button" type="button"
+          aria-label="Fechar exclusão">×</button>
+      </div>
+      <p id="excluir-compra-descricao" class="purchase-dialog-description">
+        Deseja excluir esta compra? Essa ação não poderá ser desfeita.
+      </p>
+      <div class="purchase-dialog-actions">
+        <button id="cancelar-exclusao-compra" class="button button-subtle" type="button">
+          Cancelar
+        </button>
+        <button id="confirmar-exclusao-compra" class="button button-danger-solid" type="submit">
+          Excluir compra
+        </button>
       </div>
     </form>
   </dialog>
