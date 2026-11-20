@@ -17,6 +17,7 @@ const resumoRascunho = document.getElementById("resumo-rascunhos");
 const resumoFinalizadas = document.getElementById("resumo-finalizadas");
 
 
+
 let compras = carregarCompras();
 
 formCompra.addEventListener('submit', (e) => {
@@ -76,20 +77,16 @@ function renderizarCompras(){
 
     listaCompras.innerHTML = '';
 
-    const CompraUL = document.createElement('ul');
-
     compras.forEach((c) => {
-        const CompraLI = document.createElement('li');
-        const nomeCompra = document.createElement('span');
-        const dataCompra = document.createElement('span');
+        const modeloCompra = document.getElementById("modelo-compra");
+        const copiaTemplate = modeloCompra.content.cloneNode(true); 
+        const tituloTemplate = copiaTemplate.querySelector('.compra-nome');
+        const dataTemplate = copiaTemplate.querySelector('.compra-data');
 
-        nomeCompra.textContent = c.nome;
-        dataCompra.textContent = new Date(c.criadaEm).toLocaleDateString('pt-BR', {day: '2-digit', month: '2-digit', year: 'numeric'});
-        CompraLI.appendChild(nomeCompra);
-        CompraLI.appendChild(dataCompra);
-        CompraUL.appendChild(CompraLI);
+        tituloTemplate.textContent = c.nome;
+        dataTemplate.textContent = new Date(c.criadaEm).toLocaleDateString('pt-BR', {day: '2-digit', month: '2-digit', year: 'numeric'});
+        listaCompras.appendChild(copiaTemplate);
     });
-    listaCompras.appendChild(CompraUL);
 }
 
 function atualizarContadores(){
