@@ -68,17 +68,18 @@ function adicionarCompra(){
 function renderizarCompras(){
 
     if(compras.length === 0){
-        comprasVazio.style.display = "block";
+        comprasVazio.style.display = "";
         listaCompras.style.display = "none";
     } else {
         comprasVazio.style.display = "none";
-        listaCompras.style.display = "block";
+        listaCompras.style.display = "";
     }
 
     listaCompras.innerHTML = '';
 
+    const modeloCompra = document.getElementById("modelo-compra");
+    
     compras.forEach((c) => {
-        const modeloCompra = document.getElementById("modelo-compra");
         const copiaTemplate = modeloCompra.content.cloneNode(true); 
         const tituloTemplate = copiaTemplate.querySelector('.compra-nome');
         const dataTemplate = copiaTemplate.querySelector('.compra-data');
