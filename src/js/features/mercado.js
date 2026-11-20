@@ -27,7 +27,6 @@ formMercado.addEventListener('submit', (e) => {
     e.preventDefault();
     adicionarMercado();
     renderizarMercados();
-    console.log(mercados);
 });
 
 listaMercados.addEventListener('click', (e) => {
