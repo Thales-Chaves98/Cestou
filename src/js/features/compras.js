@@ -16,7 +16,9 @@ const resumoCompras = document.getElementById("resumo-compras");
 const resumoRascunho = document.getElementById("resumo-rascunhos");
 const resumoFinalizadas = document.getElementById("resumo-finalizadas");
 
-
+const editarCompraBtn = document.getElementById("editar-compra");
+const excluirCompraBtn = document.getElementById("excluir-compra");
+const excluirCompraDialog = document.getElementById("dialog-excluir-compra");
 
 let compras = carregarCompras();
 
@@ -40,6 +42,10 @@ fecharJanelaNovaCompra.addEventListener('click', (e) => {
     e.preventDefault();
     novaCompraDialog.close();
     nomeCompraInput.value = '';
+});
+
+excluirCompraBtn.addEventListener('click', () => {
+    
 });
 
 function adicionarCompra(){
@@ -78,7 +84,7 @@ function renderizarCompras(){
     listaCompras.innerHTML = '';
 
     const modeloCompra = document.getElementById("modelo-compra");
-    
+
     compras.forEach((c) => {
         const copiaTemplate = modeloCompra.content.cloneNode(true); 
         const tituloTemplate = copiaTemplate.querySelector('.compra-nome');
