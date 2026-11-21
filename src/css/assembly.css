@@ -1,0 +1,148 @@
+/* Cestou Fresh: tela de montagem de compra.
+ * O HTML/CSS da etapa 5.1 é da IA; eventos, seleção e persistência são do aluno. */
+.assembly-page .workflow-tabs { margin-bottom: 18px; }
+.assembly-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 21px 22px;
+  margin-bottom: 18px;
+}
+.assembly-summary-text { flex: 1 1 220px; min-width: 0; }
+.assembly-summary .eyebrow { margin: 0 0 5px; }
+.assembly-summary h2 { margin: 0 0 6px; font-size: 1.1rem; overflow-wrap: anywhere; }
+.assembly-summary p { margin: 0; color: var(--muted); font-size: .77rem; line-height: 1.6; }
+.assembly-layout { grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr); }
+.assembly-layout .section-header p:not(.eyebrow) {
+  margin: 4px 0 0; color: var(--muted); font-size: .75rem; line-height: 1.6;
+}
+.assembly-layout .section-header .eyebrow { margin: 0 0 5px; }
+.assembly-form-actions { display: flex; justify-content: flex-end; margin-top: 18px; }
+.assembly-form-actions .button { min-width: 155px; }
+.assembly-products-placeholder {
+  display: grid; justify-items: center; align-content: center;
+  gap: 9px; min-height: 230px; text-align: center; border: 1px dashed var(--line);
+  border-radius: var(--radius-md); padding: 22px 16px; background: var(--soft);
+}
+.assembly-products-icon {
+  display: grid; place-items: center; width: 48px; height: 48px;
+  border-radius: 13px; background: var(--mint); color: var(--primary);
+  font-size: 1.5rem;
+}
+.assembly-products-placeholder strong { font-size: .83rem; }
+.assembly-products-placeholder p { max-width: 320px; color: var(--muted); font-size: .74rem; line-height: 1.65; margin: 0; }
+
+@media (max-width: 800px) {
+  .assembly-layout { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .assembly-summary { padding: 17px; }
+  .assembly-form-actions .button { width: 100%; }
+}
+
+/* Etapa 5.1 — opções de mercado na tela de montagem. */
+
+
+.market-pick-context {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--soft);
+}
+.market-pick-context span {
+  color: var(--muted);
+  font-size: .69rem;
+  font-weight: 700;
+}
+.market-pick-context strong {
+  color: var(--ink);
+  font-size: .86rem;
+  overflow-wrap: anywhere;
+}
+
+.market-pick-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 7px;
+  margin-bottom: 11px;
+}
+.market-pick-meta strong { font-size: .79rem; }
+#contador-mercados-selecionados {
+  color: var(--primary);
+  font-size: .72rem;
+  font-weight: 800;
+}
+
+.market-pick-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 9px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 2px 2px 5px;
+  margin-bottom: 12px;
+}
+
+.market-pick-list .market-pick-option {
+  display: flex;
+  align-items: center;
+  max-width: none;
+  min-height: 49px;
+  padding: 11px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-weight: 750;
+  font-size: .77rem;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.market-pick-option > .mercado-selecao-checkbox { flex: 0 0 17px; }
+.market-pick-option > .mercado-selecao-nome { min-width: 0; overflow-wrap: anywhere; }
+
+.market-pick-list .market-pick-option:has(input:checked) {
+  background: var(--mint);
+  border-color: #93c5a5;
+  color: var(--primary);
+}
+
+.market-pick-list .market-pick-option:focus-within {
+  outline: 3px solid #16765c28;
+  outline-offset: 1px;
+}
+
+.market-pick-list .market-pick-option:has(input:disabled) {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+.market-pick-empty {
+  border: 1px dashed #c8d8c8;
+  border-radius: var(--radius-md);
+  padding: 16px;
+  color: var(--muted);
+  font-size: .79rem;
+  line-height: 1.6;
+  background: var(--soft);
+  text-align: center;
+}
+.market-pick-empty[hidden] { display: none; }
+
+#mensagem-selecao-mercados:not(:empty) { margin-top: 8px; }
+
+@media (max-width: 520px) {
+  #lista-compras .selecionar-mercados-compra {
+    flex: 1 1 100%;
+    margin-right: 0;
+  }
+  .market-pick-list { grid-template-columns: 1fr; }
+  .market-pick-list .market-pick-option { min-height: 47px; }
+}

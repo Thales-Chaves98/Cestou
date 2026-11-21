@@ -6,9 +6,10 @@
 
 /* "Compras" é a página inicial; "Mercados" aparece ao navegar para #mercados. */
 #compras { display: block; }
-#mercados { display: none; }
-#mercados:target { display: block; }
-body:has(#mercados:target) #compras { display: none; }
+#mercados, #montagem-compra { display: none; }
+#mercados:target, #montagem-compra:target { display: block; }
+body:has(#mercados:target) #compras,
+body:has(#montagem-compra:target) #compras { display: none; }
 
 body:not(:has(#mercados:target)) .desktop-navigation a[href="#compras"],
 body:has(#mercados:target) .desktop-navigation a[href="#mercados"] {
@@ -157,109 +158,3 @@ body:has(#mercados:target) .mobile-navigation a[href="#mercados"] {
   }
 }
 
-/* Etapa 5.1 — seleção de mercados por compra. */
-#lista-compras .selecionar-mercados-compra { margin-right: auto; }
-
-.market-pick-dialog { width: min(calc(100% - 28px), 530px); }
-
-.market-pick-context {
-  display: grid;
-  gap: 4px;
-  padding: 12px 14px;
-  margin-bottom: 18px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  background: var(--soft);
-}
-.market-pick-context span {
-  color: var(--muted);
-  font-size: .69rem;
-  font-weight: 700;
-}
-.market-pick-context strong {
-  color: var(--ink);
-  font-size: .86rem;
-  overflow-wrap: anywhere;
-}
-
-.market-pick-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 7px;
-  margin-bottom: 11px;
-}
-.market-pick-meta strong { font-size: .79rem; }
-#contador-mercados-selecionados {
-  color: var(--primary);
-  font-size: .72rem;
-  font-weight: 800;
-}
-
-.market-pick-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: stretch;
-  gap: 9px;
-  max-height: 300px;
-  overflow-y: auto;
-  padding: 2px 2px 5px;
-  margin-bottom: 12px;
-}
-
-.market-pick-list .market-pick-option {
-  display: flex;
-  align-items: center;
-  max-width: none;
-  min-height: 49px;
-  padding: 11px 12px;
-  border-radius: var(--radius-sm);
-  background: var(--surface);
-  font-weight: 750;
-  font-size: .77rem;
-  white-space: normal;
-  overflow-wrap: anywhere;
-}
-
-.market-pick-option > .mercado-selecao-checkbox { flex: 0 0 17px; }
-.market-pick-option > .mercado-selecao-nome { min-width: 0; overflow-wrap: anywhere; }
-
-.market-pick-list .market-pick-option:has(input:checked) {
-  background: var(--mint);
-  border-color: #93c5a5;
-  color: var(--primary);
-}
-
-.market-pick-list .market-pick-option:focus-within {
-  outline: 3px solid #16765c28;
-  outline-offset: 1px;
-}
-
-.market-pick-list .market-pick-option:has(input:disabled) {
-  cursor: not-allowed;
-  opacity: .5;
-}
-
-.market-pick-empty {
-  border: 1px dashed #c8d8c8;
-  border-radius: var(--radius-md);
-  padding: 16px;
-  color: var(--muted);
-  font-size: .79rem;
-  line-height: 1.6;
-  background: var(--soft);
-  text-align: center;
-}
-.market-pick-empty[hidden] { display: none; }
-
-#mensagem-selecao-mercados:not(:empty) { margin-top: 8px; }
-
-@media (max-width: 520px) {
-  #lista-compras .selecionar-mercados-compra {
-    flex: 1 1 100%;
-    margin-right: 0;
-  }
-  .market-pick-list { grid-template-columns: 1fr; }
-  .market-pick-list .market-pick-option { min-height: 47px; }
-}
