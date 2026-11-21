@@ -167,6 +167,7 @@ formSelecionarMercados.addEventListener('submit', (e) => {
     if(ids.length >= 1 && ids.length <= 4){
         compra.mercadosIds = ids;
         salvarCompras(compras);
+        renderizarCompras();
 
         mensagem.classList.add('feedback-sucesso');
         mensagem.textContent = 'Mercados salvos com sucesso!';
@@ -220,8 +221,6 @@ function renderizarCompras(){
         const ExcluirBtn = copiaTemplate.querySelector('.excluir-compra');
         const ContinuarBtn = copiaTemplate.querySelector('.continuar-compra');
 
-        const contadorCompraDetalhes = document.querySelector('.compra-detalhes');
-
         tituloTemplate.textContent = c.nome;
         dataTemplate.textContent = new Date(c.criadaEm).toLocaleDateString('pt-BR', {day: '2-digit', month: '2-digit', year: 'numeric'});
         
@@ -229,7 +228,10 @@ function renderizarCompras(){
         ExcluirBtn.dataset.id = c.id;
         ContinuarBtn.dataset.id = c.id;
 
-        contadorCompraDetalhes.innerHTML = `${c.mercadosIds.length} MERCADOS`;
+        const contadorCompraDetalhes = copiaTemplate.querySelector('.compra-detalhes');
+        const quantidadeMercados = c.mercadosIds?.length ?? 0;
+
+        contadorCompraDetalhes.textContent = `0 PRODUSTOS - ${quantidadeMercados} MERCADO${quantidadeMercados ===1 ? "" : "S"}`; 
 
         listaCompras.appendChild(copiaTemplate);
     });
