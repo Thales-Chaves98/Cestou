@@ -141,7 +141,14 @@
 /* Feedback de sucesso exibido somente após a seleção ser salva pelo JavaScript. */
 #mensagem-selecao-mercados.feedback-sucesso {
   color: var(--primary);
+  background: var(--mint);
+  border: 1px solid #b2d8be;
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-top: 13px;
+  font-size: .78rem;
   font-weight: 800;
+  line-height: 1.5;
 }
 
 #mensagem-selecao-mercados.feedback-sucesso:not(:empty)::before {
