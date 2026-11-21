@@ -144,6 +144,7 @@ body:has(#mercados:target) .mobile-navigation a[href="#mercados"] {
 
 #lista-compras .compra-acoes .button {
   min-width: 94px;
+  min-height: 44px;
 }
 
 #lista-compras .compra-acoes .button:focus-visible {
@@ -151,10 +152,30 @@ body:has(#mercados:target) .mobile-navigation a[href="#mercados"] {
   outline-offset: 2px;
 }
 
-@media (max-width: 520px) {
+/* No celular, as três ações ocupam colunas iguais.
+   O grid faz os botões terem a mesma altura mesmo se um rótulo quebrar linha. */
+@media (max-width: 700px) {
+  #lista-compras .compra-acoes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 8px;
+  }
+
   #lista-compras .compra-acoes .button {
-    flex: 1 1 0;
+    width: 100%;
     min-width: 0;
+    min-height: 52px;
+    padding: 8px 5px;
+    line-height: 1.2;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 360px) {
+  #lista-compras .compra-acoes .button {
+    padding-inline: 3px;
+    font-size: .68rem;
   }
 }
 

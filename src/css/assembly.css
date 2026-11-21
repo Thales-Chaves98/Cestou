@@ -139,10 +139,6 @@
 #mensagem-selecao-mercados:not(:empty) { margin-top: 8px; }
 
 @media (max-width: 520px) {
-  #lista-compras .selecionar-mercados-compra {
-    flex: 1 1 100%;
-    margin-right: 0;
-  }
   .market-pick-list { grid-template-columns: 1fr; }
   .market-pick-list .market-pick-option { min-height: 47px; }
 }
