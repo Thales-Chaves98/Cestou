@@ -27,6 +27,9 @@ const cancelarEdicaoCompra = document.getElementById("cancelar-edicao-compra");
 const editarCompraNome = document.getElementById("editar-compra-nome");
 
 const listaMercadosDisponiveis = document.getElementById("mercados-disponiveis");
+const contadorMercados = document.getElementById("contador-mercados-selecionados");
+
+const formSelecionarMercados = document.getElementById("form-selecionar-mercados");
 
 
 let compras = carregarCompras();
@@ -93,13 +96,11 @@ listaMercadosDisponiveis.addEventListener('change', (e) => {
 
     const ids = Array.from(marcados).map((checkbox) => {
         return checkbox.value;
-    });
-
-    const contadorMercados = document.getElementById("contador-mercados-selecionados");
-    
+    });    
 
     if(ids.length > 4){
         e.target.checked = false;
+
     } else {
         contadorMercados.textContent = `${ids.length} de 4 selecionados`;
         console.log(ids);
@@ -155,6 +156,15 @@ editarCompraDialog.addEventListener('submit', (e) => {
     }
 });
 
+formSelecionarMercados.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const idCompra = compraAtualId;
+
+    const compra = compras.find((c) => c.id === idCompra);
+
+});
+
 function adicionarCompra(){
 
     const nome = nomeCompraInput.value.trim().toUpperCase();
@@ -163,7 +173,8 @@ function adicionarCompra(){
         id: crypto.randomUUID(),
         nome,
         status: "rascunho",
-        criadaEm: new Date().toISOString()
+        criadaEm: new Date().toISOString(),
+        mercadosId: []
     }
 
     if(nome !== ""){
@@ -252,6 +263,7 @@ function renderizarMercadosDisponiveis() {
     const modeloMercadosDisponiveis = document.getElementById("modelo-mercado-selecao");
 
     listaMercadosDisponiveis.innerHTML = '';
+    contadorMercados.textContent = `0 de 4 selecionados`;
 
     mercadosDisponiveis.forEach((m) => {
 
