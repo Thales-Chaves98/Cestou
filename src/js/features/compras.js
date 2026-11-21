@@ -36,6 +36,8 @@ const formProdutosCompra = document.getElementById("form-produto-compra");
 const nomeProdutoInput = document.getElementById("produto-compra-nome");
 const quantidadeInput = document.getElementById("produto-compra-quantidade");
 
+const listaProdutosCompra = document.getElementById("lista-produtos-compra");
+
 let compras = carregarCompras();
 
 let editingCompraId = null;
@@ -94,6 +96,7 @@ listaCompras.addEventListener('click', (e) => {
         nomeCompraMontagem.textContent = compras.find((c) => c.id === compraAtualId).nome;
 
         renderizarMercadosDisponiveis();
+        renderizarProdutosCompra();
     }
 });
 
@@ -366,12 +369,42 @@ function adicionarProdutosCompra(){
         compra.produtos ??= [];
         compra.produtos.push(produto);
         salvarCompras(compras);
+        renderizarProdutosCompra();
     }
 
     nomeProdutoInput.value = "";
     quantidadeInput.value = 1;
     nomeProdutoInput.focus();
     
+}
+
+function renderizarProdutosCompra(){
+    const compra = compras.find((c) => c.id === compraAtualId);
+    const produtosCompra = compra.produtos;
+    
+    const modeloTemplateProdutos = document.getElementById("modelo-produto-compra");
+    const produtosVazio = document.getElementById("produtos-compra-vazio");
+
+    if(produtosCompra.length === 0){
+        produtosVazio.style.display = "";
+        listaProdutosCompra.style.display = "none";
+    } else {
+        produtosVazio.style.display = "none";
+        listaProdutosCompra.style.display = "";
+    }
+
+    listaProdutosCompra.innerHTML = "";
+
+    produtosCompra.forEach((p) =>{
+        const copiaTemplateProdutos = modeloTemplateProdutos.content.cloneNode(true);
+        const nomeProdutoTemplate = copiaTemplateProdutos.querySelector(".produto-compra-nome");
+        const quantidadeProdutoTemplate = copiaTemplateProdutos.querySelector(".produto-compra-quantidade");
+
+        nomeProdutoTemplate.textContent = p.nomeProduto;
+        quantidadeProdutoTemplate.textContent = p.quantidadeProduto;
+
+        listaProdutosCompra.append(copiaTemplateProdutos);
+    });
 }
 
 
