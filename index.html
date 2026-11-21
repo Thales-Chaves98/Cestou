@@ -41,7 +41,7 @@
         <a href="#compras">Compras</a>
         <a href="#mercados">Mercados</a>
       </nav>
-      <span class="header-label">Projeto educacional · Etapa 04</span>
+      <span class="header-label">Projeto educacional · Etapa 05</span>
     </div>
   </header>
 
@@ -114,6 +114,9 @@
           </div>
           <!-- O aluno associa o ID da compra aos botões usando dataset.id na cópia. -->
           <div class="purchase-actions compra-acoes">
+            <button class="button button-sm button-primary selecionar-mercados-compra" type="button">
+              Escolher mercados
+            </button>
             <button class="button button-sm button-subtle editar-compra" type="button">
               Editar
             </button>
@@ -126,7 +129,7 @@
 
       <aside class="sample-note" aria-label="Etapa atual do desenvolvimento">
         <span aria-hidden="true">ⓘ</span>
-        <p>Agora vamos editar e excluir compras em rascunho. Produtos, mercados participantes e comparação virão depois.</p>
+        <p>Agora você poderá escolher até quatro mercados por compra. Cadastro de produtos e preços virá depois.</p>
       </aside>
     </section>
 
@@ -229,6 +232,60 @@
     </form>
   </dialog>
 
+
+
+  <!-- Etapa 5.1: seleção de mercados de uma compra.
+       O aluno preenche a lista e controla a seleção, o limite e a persistência. -->
+  <dialog id="dialog-selecionar-mercados" class="purchase-dialog market-pick-dialog"
+    aria-labelledby="titulo-selecionar-mercados">
+    <form id="form-selecionar-mercados" class="purchase-dialog-form">
+      <div class="purchase-dialog-heading">
+        <h2 id="titulo-selecionar-mercados">Escolher mercados</h2>
+        <button id="fechar-selecao-mercados" class="icon-button" type="button"
+          aria-label="Fechar seleção de mercados">×</button>
+      </div>
+      <p class="purchase-dialog-description">
+        Escolha de 1 a 4 mercados para esta compra em rascunho.
+        Para comparar preços e finalizar futuramente, serão necessários pelo menos 2.
+      </p>
+
+      <div class="market-pick-context">
+        <span>Compra selecionada</span>
+        <strong id="nome-compra-selecao"></strong>
+      </div>
+
+      <div class="market-pick-meta">
+        <strong>Mercados cadastrados</strong>
+        <span id="contador-mercados-selecionados" aria-live="polite">0 de 4 selecionados</span>
+      </div>
+
+      <!-- Crie uma opção para cada mercado usando #modelo-mercado-selecao. -->
+      <div id="mercados-disponiveis" class="market-selector market-pick-list"
+        role="group" aria-label="Escolha os mercados participantes"></div>
+      <p id="selecao-mercados-vazio" class="market-pick-empty" hidden>
+        Nenhum mercado cadastrado. Feche esta janela e cadastre um na aba Mercados.
+      </p>
+
+      <template id="modelo-mercado-selecao">
+        <label class="market-option market-pick-option">
+          <input class="mercado-selecao-checkbox" name="mercado" type="checkbox" />
+          <span class="mercado-selecao-nome"></span>
+        </label>
+      </template>
+
+      <p id="mensagem-selecao-mercados" class="form-feedback" role="status"
+        aria-live="polite"></p>
+
+      <div class="purchase-dialog-actions">
+        <button id="cancelar-selecao-mercados" class="button button-subtle" type="button">
+          Cancelar
+        </button>
+        <button id="salvar-selecao-mercados" class="button button-primary" type="submit">
+          Salvar mercados
+        </button>
+      </div>
+    </form>
+  </dialog>
 
   <!-- Etapa 4.2: janelas de edição e exclusão de compras.
        Eventos, dados selecionados, validação e persistência são responsabilidade do aluno. -->
