@@ -95,7 +95,15 @@ listaMercadosDisponiveis.addEventListener('change', (e) => {
         return checkbox.value;
     });
 
-    console.log(ids);
+    const contadorMercados = document.getElementById("contador-mercados-selecionados");
+    
+
+    if(ids.length > 4){
+        e.target.checked = false;
+    } else {
+        contadorMercados.textContent = `${ids.length} de 4 selecionados`;
+        console.log(ids);
+    }
 });
 
 fecharExclusaoCompra.addEventListener('click', (e) => {
@@ -254,7 +262,11 @@ function renderizarMercadosDisponiveis() {
         nomeMercadoTemplate.textContent = m.nome;
         checkboxMercadoTemplate.value = m.id;
         listaMercadosDisponiveis.appendChild(copiaTemplate);
+
     });
+
+    
+
 }
 
 renderizarCompras();
