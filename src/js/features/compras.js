@@ -235,7 +235,7 @@ function renderizarCompras(){
         const contadorCompraDetalhes = copiaTemplate.querySelector('.compra-detalhes');
         const quantidadeMercados = c.mercadosIds?.length ?? 0;
 
-        contadorCompraDetalhes.textContent = `0 PRODUSTOS - ${quantidadeMercados} MERCADO${quantidadeMercados ===1 ? "" : "S"}`; 
+        contadorCompraDetalhes.textContent = `0 PRODUTOS - ${quantidadeMercados} MERCADO${quantidadeMercados ===1 ? "" : "S"}`; 
 
         listaCompras.appendChild(copiaTemplate);
     });
