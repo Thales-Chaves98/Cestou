@@ -198,12 +198,14 @@ formProdutosCompra.addEventListener('submit', (e) =>{
 listaProdutosCompra.addEventListener('click', (e) =>{
     const btn = e.target.closest('button');
 
+    const id = btn.dataset.id;
+
     if(btn.classList.contains("editar-produto-compra")){
-        console.log("editar");
+        console.log("editar " + id);
     }
 
     if(btn.classList.contains("excluir-produto-compra")){
-        console.log("deletar");
+        console.log("deletar " + id);
     }
 
 });
@@ -417,8 +419,8 @@ function renderizarProdutosCompra(){
         const nomeProdutoTemplate = copiaTemplateProdutos.querySelector(".produto-compra-nome");
         const quantidadeProdutoTemplate = copiaTemplateProdutos.querySelector(".produto-compra-quantidade");
 
-        const editarProdutoBtn = copiaTemplateProdutos.querySelector("editar-produto-compra");
-        const excluirProdutoBtn = copiaTemplateProdutos.querySelector("excluir-produto-compra");
+        const editarProdutoBtn = copiaTemplateProdutos.querySelector(".editar-produto-compra");
+        const excluirProdutoBtn = copiaTemplateProdutos.querySelector(".excluir-produto-compra");
 
         nomeProdutoTemplate.textContent = p.nomeProduto;
         quantidadeProdutoTemplate.textContent = p.quantidadeProduto;
