@@ -70,6 +70,10 @@ listaCompras.addEventListener('click', (e) => {
         editingCompraId = id;
         abrirEditarCompra(editingCompraId);
     }
+
+    if(btn.classList.contains('continuar-compra')){
+        
+    }
 });
 
 fecharExclusaoCompra.addEventListener('click', (e) => {
@@ -165,9 +169,11 @@ function renderizarCompras(){
 
         const EditarBtn = copiaTemplate.querySelector('.editar-compra');
         const ExcluirBtn = copiaTemplate.querySelector('.excluir-compra');
+        const ContinuarBtn = copiaTemplate.querySelector('.continuar-compra');
 
         EditarBtn.dataset.id = c.id;
         ExcluirBtn.dataset.id = c.id;
+        ContinuarBtn.dataset.id = c.id;
 
         tituloTemplate.textContent = c.nome;
         dataTemplate.textContent = new Date(c.criadaEm).toLocaleDateString('pt-BR', {day: '2-digit', month: '2-digit', year: 'numeric'});
