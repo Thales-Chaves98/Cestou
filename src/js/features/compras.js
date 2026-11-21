@@ -236,8 +236,10 @@ function renderizarMercadosDisponiveis() {
 
         const copiaTemplate = modeloMercadosDisponiveis.content.cloneNode(true); 
         const nomeMercadoTemplate = copiaTemplate.querySelector('.mercado-selecao-nome');
+        const checkboxMercadoTemplate = copiaTemplate.querySelector('.mercado-selecao-checkbox');
 
         nomeMercadoTemplate.textContent = m.nome;
+        checkboxMercadoTemplate.dataset.id = m.id;
         listaMercadosDisponiveis.appendChild(copiaTemplate);
     });
 }
