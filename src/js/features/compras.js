@@ -26,6 +26,8 @@ const fecharEdicaoCompra = document.getElementById("fechar-edicao-compra");
 const cancelarEdicaoCompra = document.getElementById("cancelar-edicao-compra");
 const editarCompraNome = document.getElementById("editar-compra-nome");
 
+const listaMercadosDisponiveis = document.getElementById("mercados-disponiveis");
+
 
 let compras = carregarCompras();
 
@@ -82,6 +84,18 @@ listaCompras.addEventListener('click', (e) => {
 
         renderizarMercadosDisponiveis();
     }
+});
+
+listaMercadosDisponiveis.addEventListener('change', (e) => {
+    const marcados = document.querySelectorAll(
+    '.mercado-selecao-checkbox:checked'
+    );
+
+    const ids = Array.from(marcados).map((checkbox) => {
+        return checkbox.value;
+    });
+
+    console.log(ids);
 });
 
 fecharExclusaoCompra.addEventListener('click', (e) => {
@@ -227,7 +241,6 @@ function abrirEditarCompra(id){
 function renderizarMercadosDisponiveis() {
     let mercadosDisponiveis = carregarMercados();
 
-    const listaMercadosDisponiveis = document.getElementById("mercados-disponiveis");
     const modeloMercadosDisponiveis = document.getElementById("modelo-mercado-selecao");
 
     listaMercadosDisponiveis.innerHTML = '';
@@ -239,7 +252,7 @@ function renderizarMercadosDisponiveis() {
         const checkboxMercadoTemplate = copiaTemplate.querySelector('.mercado-selecao-checkbox');
 
         nomeMercadoTemplate.textContent = m.nome;
-        checkboxMercadoTemplate.dataset.id = m.id;
+        checkboxMercadoTemplate.value = m.id;
         listaMercadosDisponiveis.appendChild(copiaTemplate);
     });
 }
