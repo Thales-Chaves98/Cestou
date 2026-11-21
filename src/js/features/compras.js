@@ -95,19 +95,9 @@ listaMercadosDisponiveis.addEventListener('change', (e) => {
 
     if(ids.length > 4){
         e.target.checked = false;
-
-    } else {
-        contadorMercados.textContent = `${ids.length} de 4 selecionados`;
-        console.log(ids);
     }
 
-    const checkboxes = listaMercadosDisponiveis.querySelectorAll(
-        '.mercado-selecao-checkbox'
-    );
-
-    checkboxes.forEach((checkbox) => {
-        checkbox.disabled = ids.length >= 4 && !checkbox.checked;
-    });
+    atualizarEstadoMercado();
 
     const mensagem = document.getElementById('mensagem-selecao-mercados');
     mensagem.textContent = '';
@@ -301,6 +291,8 @@ function renderizarMercadosDisponiveis() {
     const idsMarcados = obterMercadosSelecionados();
 
     contadorMercados.textContent = `${idsMarcados.length} de 4 selecionados`;
+
+    atualizarEstadoMercado();
 }
 
 function obterMercadosSelecionados(){
@@ -313,6 +305,20 @@ function obterMercadosSelecionados(){
     });    
 
     return ids;
+}
+
+function atualizarEstadoMercado(){
+    const ids = obterMercadosSelecionados();
+
+    contadorMercados.textContent = `${ids.length} de 4 selecionados`;
+
+    const checkboxes = listaMercadosDisponiveis.querySelectorAll(
+        '.mercado-selecao-checkbox'
+    );
+
+    checkboxes.forEach((checkbox) => {
+        checkbox.disabled = ids.length >= 4 && !checkbox.checked;
+    });
 }
 
 renderizarCompras();
