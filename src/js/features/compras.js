@@ -30,6 +30,7 @@ let compras = carregarCompras();
 
 let editingCompraId = null;
 let deletingCompraId = null;
+let compraAtualId = null;
 
 
 formCompra.addEventListener('submit', (e) => {
@@ -72,7 +73,11 @@ listaCompras.addEventListener('click', (e) => {
     }
 
     if(btn.classList.contains('continuar-compra')){
-        
+        compraAtualId = id;
+        window.location.hash = "montagem-compra";
+
+        const nomeCompraMontagem = document.getElementById("nome-compra-montagem");
+        nomeCompraMontagem.textContent = compras.find((c) => c.id === compraAtualId).nome;
     }
 });
 
