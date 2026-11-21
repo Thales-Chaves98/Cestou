@@ -252,8 +252,9 @@ function renderizarCompras(){
 
         const contadorCompraDetalhes = copiaTemplate.querySelector('.compra-detalhes');
         const quantidadeMercados = c.mercadosIds?.length ?? 0;
+        const quantidadeProdutos = c.produtos?.length ?? 0;
 
-        contadorCompraDetalhes.textContent = `0 PRODUTOS - ${quantidadeMercados} MERCADO${quantidadeMercados ===1 ? "" : "S"}`; 
+        contadorCompraDetalhes.textContent = `${quantidadeProdutos} PRODUTO${quantidadeProdutos ===1 ? "" : "S"} • ${quantidadeMercados} MERCADO${quantidadeMercados ===1 ? "" : "S"}`; 
 
         listaCompras.appendChild(copiaTemplate);
     });
@@ -370,6 +371,7 @@ function adicionarProdutosCompra(){
         compra.produtos.push(produto);
         salvarCompras(compras);
         renderizarProdutosCompra();
+        renderizarCompras();
     }
 
     nomeProdutoInput.value = "";
