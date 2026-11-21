@@ -288,10 +288,6 @@ function renderizarMercadosDisponiveis() {
         listaMercadosDisponiveis.appendChild(copiaTemplate);
     });
 
-    const idsMarcados = obterMercadosSelecionados();
-
-    contadorMercados.textContent = `${idsMarcados.length} de 4 selecionados`;
-
     atualizarEstadoMercado();
 }
 
