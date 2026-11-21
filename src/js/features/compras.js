@@ -32,6 +32,9 @@ const contadorMercados = document.getElementById("contador-mercados-selecionados
 const formSelecionarMercados = document.getElementById("form-selecionar-mercados");
 const mensagem = document.getElementById('mensagem-selecao-mercados');
 
+const formProdutosCompra = document.getElementById("form-produto-compra");
+const nomeProdutoInput = document.getElementById("produto-compra-nome");
+const quantidade = document.getElementById("produto-compra-quantidade");
 
 let compras = carregarCompras();
 
