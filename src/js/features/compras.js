@@ -84,6 +84,7 @@ listaCompras.addEventListener('click', (e) => {
         window.location.hash = "montagem-compra";
 
         mensagem.textContent = "";
+        mensagem.classList.remove('feedback-sucesso');
 
         const nomeCompraMontagem = document.getElementById("nome-compra-montagem");
         nomeCompraMontagem.textContent = compras.find((c) => c.id === compraAtualId).nome;
@@ -171,6 +172,9 @@ formSelecionarMercados.addEventListener('submit', (e) => {
 
         mensagem.classList.add('feedback-sucesso');
         mensagem.textContent = 'Mercados salvos com sucesso!';
+    } else {
+        mensagem.classList.add('feedback-error');
+        mensagem.textContent = 'Selecione pelo menos um mercado antes de salvar!'
     }
 });
 
