@@ -90,13 +90,8 @@ listaCompras.addEventListener('click', (e) => {
 });
 
 listaMercadosDisponiveis.addEventListener('change', (e) => {
-    const marcados = document.querySelectorAll(
-    '.mercado-selecao-checkbox:checked'
-    );
 
-    const ids = Array.from(marcados).map((checkbox) => {
-        return checkbox.value;
-    });    
+    const ids = obterMercadosSelecionados();
 
     if(ids.length > 4){
         e.target.checked = false;
@@ -162,6 +157,12 @@ formSelecionarMercados.addEventListener('submit', (e) => {
     const idCompra = compraAtualId;
 
     const compra = compras.find((c) => c.id === idCompra);
+    const ids = obterMercadosSelecionados();
+
+    if(ids.length > 0 && ids.length < 4){
+        compra.mercadosId = ids;
+        salvarCompras(compras);
+    }
 
 });
 
@@ -276,9 +277,18 @@ function renderizarMercadosDisponiveis() {
         listaMercadosDisponiveis.appendChild(copiaTemplate);
 
     });
+}
 
-    
+function obterMercadosSelecionados(){
+    const marcados = document.querySelectorAll(
+    '.mercado-selecao-checkbox:checked'
+    );
 
+    const ids = Array.from(marcados).map((checkbox) => {
+        return checkbox.value;
+    });    
+
+    return ids;
 }
 
 renderizarCompras();
