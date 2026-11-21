@@ -363,6 +363,7 @@ function adicionarProdutosCompra(){
 
     
     if(nomeProduto !== "" && quantidadeProduto > 0 && Number.isFinite(quantidadeProduto)){
+        compra.produtos ??= [];
         compra.produtos.push(produto);
         salvarCompras(compras);
     }
