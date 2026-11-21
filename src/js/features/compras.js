@@ -1,4 +1,5 @@
-import {salvarCompras, carregarCompras} from '../services/storage.js';
+import {salvarCompras, carregarCompras, salvarMercados, carregarMercados} from '../services/storage.js';
+
 
 const abrirNovaCompraBtn = document.getElementById("abrir-nova-compra");
 const novaCompraDialog = document.getElementById("dialog-nova-compra");
@@ -78,6 +79,8 @@ listaCompras.addEventListener('click', (e) => {
 
         const nomeCompraMontagem = document.getElementById("nome-compra-montagem");
         nomeCompraMontagem.textContent = compras.find((c) => c.id === compraAtualId).nome;
+
+        renderizarMercadosDisponiveis();
     }
 });
 
@@ -217,6 +220,26 @@ function abrirEditarCompra(id){
 
     const compra = compras.find((c) => c.id === id);
     editarCompraNome.value = compra.nome;
+}
+
+//mercado
+
+function renderizarMercadosDisponiveis() {
+    let mercadosDisponiveis = carregarMercados();
+
+    const listaMercadosDisponiveis = document.getElementById("mercados-disponiveis");
+    const modeloMercadosDisponiveis = document.getElementById("modelo-mercado-selecao");
+
+    listaMercadosDisponiveis.innerHTML = '';
+
+    mercadosDisponiveis.forEach((m) => {
+
+        const copiaTemplate = modeloMercadosDisponiveis.content.cloneNode(true); 
+        const nomeMercadoTemplate = copiaTemplate.querySelector('.mercado-selecao-nome');
+
+        nomeMercadoTemplate.textContent = m.nome;
+        listaMercadosDisponiveis.appendChild(copiaTemplate);
+    });
 }
 
 renderizarCompras();
