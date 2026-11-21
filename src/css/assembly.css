@@ -21,18 +21,60 @@
 .assembly-layout .section-header .eyebrow { margin: 0 0 5px; }
 .assembly-form-actions { display: flex; justify-content: flex-end; margin-top: 18px; }
 .assembly-form-actions .button { min-width: 155px; }
-.assembly-products-placeholder {
-  display: grid; justify-items: center; align-content: center;
-  gap: 9px; min-height: 230px; text-align: center; border: 1px dashed var(--line);
-  border-radius: var(--radius-md); padding: 22px 16px; background: var(--soft);
+/* Etapa 5.2 — produtos da compra: formulário e lista responsiva. */
+.assembly-product-form { display: grid; gap: 12px; }
+.assembly-product-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
 }
-.assembly-products-icon {
-  display: grid; place-items: center; width: 48px; height: 48px;
-  border-radius: 13px; background: var(--mint); color: var(--primary);
-  font-size: 1.5rem;
+.assembly-product-fields .field { min-width: 0; }
+.assembly-product-fields .field > input,
+.assembly-product-fields .field > select {
+  width: 100%; min-width: 0; min-height: 46px; border: 1px solid #cddacb;
+  border-radius: var(--radius-sm); padding: 10px 11px;
+  background: var(--surface); color: var(--ink); font-size: .83rem;
 }
-.assembly-products-placeholder strong { font-size: .83rem; }
-.assembly-products-placeholder p { max-width: 320px; color: var(--muted); font-size: .74rem; line-height: 1.65; margin: 0; }
+.assembly-product-fields .field > input:focus,
+.assembly-product-fields .field > select:focus {
+  outline: 0; border-color: var(--primary); box-shadow: 0 0 0 3px #16765c1e;
+}
+.assembly-product-add { width: 100%; }
+.assembly-product-list-heading {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: 8px;
+  margin: 22px 0 11px; padding-top: 16px; border-top: 1px solid var(--line);
+}
+.assembly-product-list-heading > strong { font-size: .82rem; }
+.assembly-product-empty {
+  display: grid; justify-items: center; gap: 7px; text-align: center;
+  padding: 26px 14px; border: 1px dashed var(--line);
+  border-radius: var(--radius-md); background: var(--soft);
+}
+.assembly-product-empty-icon {
+  display: grid; place-items: center; width: 42px; height: 42px;
+  border-radius: 12px; background: var(--mint); color: var(--primary); font-size: 1.4rem;
+}
+.assembly-product-empty > strong { font-size: .81rem; }
+.assembly-product-empty > p { margin: 0; font-size: .73rem; color: var(--muted); line-height: 1.6; }
+.assembly-product-list { display: grid; gap: 9px; }
+.assembly-product-list:empty { display: none; }
+.assembly-product-item {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px; padding: 12px;
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
+  background: var(--surface);
+}
+.assembly-product-description { flex: 1 1 130px; min-width: 0; display: grid; gap: 3px; }
+.assembly-product-description strong {
+  color: var(--ink); font-size: .82rem; overflow-wrap: anywhere;
+}
+.assembly-product-description span { font-size: .73rem; color: var(--muted); }
+.assembly-product-item-actions {
+  display: flex; align-items: center; gap: 7px; flex: 0 0 auto;
+}
+.assembly-product-item-actions .button { min-width: 64px; }
+
 
 @media (max-width: 800px) {
   .assembly-layout { grid-template-columns: 1fr; }
@@ -189,4 +231,10 @@
 @media (max-width: 520px) {
   .market-pick-list { grid-template-columns: 1fr; }
   .market-pick-list .market-pick-option { min-height: 47px; }
+}
+
+@media (max-width: 400px) {
+  .assembly-product-fields { grid-template-columns: 1fr; }
+  .assembly-product-item-actions { width: 100%; }
+  .assembly-product-item-actions .button { flex: 1 1 0; }
 }

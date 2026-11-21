@@ -143,7 +143,7 @@
         <div>
           <p class="eyebrow">Preparação da compra</p>
           <h1 id="montagem-title">Montagem da compra</h1>
-          <p>Escolha os mercados participantes e, na próxima etapa, monte sua lista de produtos.</p>
+          <p>Defina os mercados participantes e organize os produtos desta compra.</p>
         </div>
       </div>
 
@@ -203,19 +203,71 @@
           </form>
         </section>
 
+        <!-- Etapa 5.2: os produtos pertencem à compra atual, na mesma montagem dos mercados.
+             A lógica de cadastro, edição, exclusão e persistência será escrita pelo aluno. -->
         <section class="panel box-section" aria-labelledby="titulo-produtos-montagem">
           <div class="section-header">
             <div>
               <p class="eyebrow">Passo 2</p>
               <h2 id="titulo-produtos-montagem">Produtos da compra</h2>
-              <p>Você adicionará itens, quantidade e unidade nesta mesma tela.</p>
+              <p>Adicione os itens da lista com quantidade e unidade. Você poderá editá-los depois.</p>
             </div>
           </div>
-          <div class="assembly-products-placeholder">
-            <span class="assembly-products-icon" aria-hidden="true">▤</span>
-            <strong>Seus produtos virão aqui</strong>
-            <p>O cadastro de produtos será a Etapa 5.2. Por enquanto, implemente somente a seleção dos mercados.</p>
+
+          <form id="form-produto-compra" class="assembly-product-form">
+            <label class="field" for="produto-compra-nome">
+              <span>Nome do produto</span>
+              <input id="produto-compra-nome" name="nome" type="text" maxlength="80"
+                placeholder="Ex.: Arroz branco" autocomplete="off" required />
+            </label>
+            <div class="assembly-product-fields">
+              <label class="field" for="produto-compra-quantidade">
+                <span>Quantidade</span>
+                <input id="produto-compra-quantidade" name="quantidade" type="number"
+                  min="0.001" step="any" inputmode="decimal" value="1" required />
+              </label>
+              <label class="field" for="produto-compra-unidade">
+                <span>Unidade</span>
+                <select id="produto-compra-unidade" name="unidade" required>
+                  <option value="un">Unidade (un)</option>
+                  <option value="kg">Quilo (kg)</option>
+                  <option value="g">Grama (g)</option>
+                  <option value="L">Litro (L)</option>
+                  <option value="mL">Mililitro (mL)</option>
+                  <option value="pct">Pacote (pct)</option>
+                </select>
+              </label>
+            </div>
+            <p id="mensagem-produto-compra" class="form-feedback" role="status" aria-live="polite"></p>
+            <button class="button button-primary assembly-product-add" type="submit">
+              <span aria-hidden="true">+</span> Adicionar produto
+            </button>
+          </form>
+
+          <div class="assembly-product-list-heading">
+            <strong>Itens adicionados</strong>
+            <span id="contador-produtos-compra" class="count-pill" aria-live="polite">0 produtos</span>
           </div>
+          <div id="produtos-compra-vazio" class="assembly-product-empty">
+            <span class="assembly-product-empty-icon" aria-hidden="true">▤</span>
+            <strong>Seu carrinho ainda está vazio</strong>
+            <p>Adicione o primeiro produto usando o formulário acima.</p>
+          </div>
+          <div id="lista-produtos-compra" class="assembly-product-list"
+            role="list" aria-label="Produtos desta compra"></div>
+
+          <template id="modelo-produto-compra">
+            <article class="assembly-product-item" role="listitem">
+              <div class="assembly-product-description">
+                <strong class="produto-compra-nome"></strong>
+                <span class="produto-compra-quantidade"></span>
+              </div>
+              <div class="assembly-product-item-actions">
+                <button class="button button-sm button-subtle editar-produto-compra" type="button">Editar</button>
+                <button class="button button-sm button-danger excluir-produto-compra" type="button">Excluir</button>
+              </div>
+            </article>
+          </template>
         </section>
       </div>
     </section>
@@ -365,6 +417,66 @@
         <button id="confirmar-exclusao-compra" class="button button-danger-solid" type="submit">
           Excluir compra
         </button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Etapa 5.2: janelas dos produtos da compra. A lógica JavaScript é do aluno. -->
+  <dialog id="dialog-editar-produto-compra" class="purchase-dialog" aria-labelledby="titulo-editar-produto-compra">
+    <form id="form-editar-produto-compra" class="purchase-dialog-form">
+      <div class="purchase-dialog-heading">
+        <h2 id="titulo-editar-produto-compra">Editar produto</h2>
+        <button id="fechar-edicao-produto-compra" class="icon-button"
+          type="button" aria-label="Fechar edição">×</button>
+      </div>
+      <p class="purchase-dialog-description">Altere o produto sem perder seu identificador nem os preços vinculados a ele.</p>
+      <label class="field" for="editar-produto-compra-nome">
+        <span>Nome do produto</span>
+        <input id="editar-produto-compra-nome" type="text" name="nome" maxlength="80" required />
+      </label>
+      <div class="assembly-product-fields">
+        <label class="field" for="editar-produto-compra-quantidade">
+          <span>Quantidade</span>
+          <input id="editar-produto-compra-quantidade" type="number" name="quantidade"
+            min="0.001" step="any" inputmode="decimal" required />
+        </label>
+        <label class="field" for="editar-produto-compra-unidade">
+          <span>Unidade</span>
+          <select id="editar-produto-compra-unidade" name="unidade" required>
+            <option value="un">Unidade (un)</option>
+            <option value="kg">Quilo (kg)</option>
+            <option value="g">Grama (g)</option>
+            <option value="L">Litro (L)</option>
+            <option value="mL">Mililitro (mL)</option>
+            <option value="pct">Pacote (pct)</option>
+          </select>
+        </label>
+      </div>
+      <p id="mensagem-editar-produto-compra" class="form-feedback"
+        role="status" aria-live="polite"></p>
+      <div class="purchase-dialog-actions">
+        <button id="cancelar-edicao-produto-compra" class="button button-subtle"
+          type="button">Cancelar</button>
+        <button class="button button-primary" type="submit">Salvar alterações</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="dialog-excluir-produto-compra" class="purchase-dialog" aria-labelledby="titulo-excluir-produto-compra">
+    <form id="form-excluir-produto-compra" class="purchase-dialog-form">
+      <div class="purchase-dialog-heading">
+        <h2 id="titulo-excluir-produto-compra">Excluir produto</h2>
+        <button id="fechar-exclusao-produto-compra" class="icon-button"
+          type="button" aria-label="Fechar exclusão">×</button>
+      </div>
+      <p id="excluir-produto-compra-descricao" class="purchase-dialog-description">
+        Deseja excluir este produto da compra? Os preços associados a ele também poderão ser perdidos.
+      </p>
+      <div class="purchase-dialog-actions">
+        <button id="cancelar-exclusao-produto-compra" class="button button-subtle"
+          type="button">Cancelar</button>
+        <button id="confirmar-exclusao-produto-compra" class="button button-danger-solid"
+          type="submit">Excluir produto</button>
       </div>
     </form>
   </dialog>
