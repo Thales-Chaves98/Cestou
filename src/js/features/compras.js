@@ -171,16 +171,15 @@ formSelecionarMercados.addEventListener('submit', (e) => {
     const compra = compras.find((c) => c.id === idCompra);
     const ids = obterMercadosSelecionados();
 
-    if(ids.length >= 1 && ids.length <= 4){
-        compra.mercadosId = ids;
-        salvarCompras(compras);
-    }
-
     const mensagem = document.getElementById('mensagem-selecao-mercados');
 
-    mensagem.classList.add('feedback-sucesso');
-    mensagem.textContent = 'Mercados salvos com sucesso!';
+    if(ids.length >= 1 && ids.length <= 4){
+        compra.mercadosIds = ids;
+        salvarCompras(compras);
 
+        mensagem.classList.add('feedback-sucesso');
+        mensagem.textContent = 'Mercados salvos com sucesso!';
+    }
 });
 
 function adicionarCompra(){
@@ -192,7 +191,7 @@ function adicionarCompra(){
         nome,
         status: "rascunho",
         criadaEm: new Date().toISOString(),
-        mercadosId: []
+        mercadosIds: []
     }
 
     if(nome !== ""){
@@ -278,10 +277,13 @@ function abrirEditarCompra(id){
 function renderizarMercadosDisponiveis() {
     let mercadosDisponiveis = carregarMercados();
 
+    const compra = compras.find((c) => c.id === compraAtualId);
+    const idsSalvos = compra?.mercadosIds ?? [];
+
     const modeloMercadosDisponiveis = document.getElementById("modelo-mercado-selecao");
 
     listaMercadosDisponiveis.innerHTML = '';
-    contadorMercados.textContent = `0 de 4 selecionados`;
+    
 
     mercadosDisponiveis.forEach((m) => {
 
@@ -291,11 +293,14 @@ function renderizarMercadosDisponiveis() {
 
         nomeMercadoTemplate.textContent = m.nome;
         checkboxMercadoTemplate.value = m.id;
-        
-
+        checkboxMercadoTemplate.checked = idsSalvos.includes(m.id);
 
         listaMercadosDisponiveis.appendChild(copiaTemplate);
     });
+
+    const idsMarcados = obterMercadosSelecionados();
+
+    contadorMercados.textContent = `${idsMarcados.length} de 4 selecionados`;
 }
 
 function obterMercadosSelecionados(){
