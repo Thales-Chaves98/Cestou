@@ -210,7 +210,7 @@
             <div>
               <p class="eyebrow">Passo 2</p>
               <h2 id="titulo-produtos-montagem">Produtos da compra</h2>
-              <p>Adicione os itens da lista com quantidade e unidade. Você poderá editá-los depois.</p>
+              <p>Adicione os itens da lista com nome e quantidade. Os preços serão registrados depois, por mercado.</p>
             </div>
           </div>
 
@@ -220,24 +220,11 @@
               <input id="produto-compra-nome" name="nome" type="text" maxlength="80"
                 placeholder="Ex.: Arroz branco" autocomplete="off" required />
             </label>
-            <div class="assembly-product-fields">
-              <label class="field" for="produto-compra-quantidade">
-                <span>Quantidade</span>
-                <input id="produto-compra-quantidade" name="quantidade" type="number"
-                  min="0.001" step="any" inputmode="decimal" value="1" required />
-              </label>
-              <label class="field" for="produto-compra-unidade">
-                <span>Unidade</span>
-                <select id="produto-compra-unidade" name="unidade" required>
-                  <option value="un">Unidade (un)</option>
-                  <option value="kg">Quilo (kg)</option>
-                  <option value="g">Grama (g)</option>
-                  <option value="L">Litro (L)</option>
-                  <option value="mL">Mililitro (mL)</option>
-                  <option value="pct">Pacote (pct)</option>
-                </select>
-              </label>
-            </div>
+            <label class="field" for="produto-compra-quantidade">
+              <span>Quantidade</span>
+              <input id="produto-compra-quantidade" name="quantidade" type="number"
+                min="0.001" step="any" inputmode="decimal" value="1" required />
+            </label>
             <p id="mensagem-produto-compra" class="form-feedback" role="status" aria-live="polite"></p>
             <button class="button button-primary assembly-product-add" type="submit">
               <span aria-hidden="true">+</span> Adicionar produto
@@ -434,24 +421,11 @@
         <span>Nome do produto</span>
         <input id="editar-produto-compra-nome" type="text" name="nome" maxlength="80" required />
       </label>
-      <div class="assembly-product-fields">
-        <label class="field" for="editar-produto-compra-quantidade">
-          <span>Quantidade</span>
-          <input id="editar-produto-compra-quantidade" type="number" name="quantidade"
-            min="0.001" step="any" inputmode="decimal" required />
-        </label>
-        <label class="field" for="editar-produto-compra-unidade">
-          <span>Unidade</span>
-          <select id="editar-produto-compra-unidade" name="unidade" required>
-            <option value="un">Unidade (un)</option>
-            <option value="kg">Quilo (kg)</option>
-            <option value="g">Grama (g)</option>
-            <option value="L">Litro (L)</option>
-            <option value="mL">Mililitro (mL)</option>
-            <option value="pct">Pacote (pct)</option>
-          </select>
-        </label>
-      </div>
+      <label class="field" for="editar-produto-compra-quantidade">
+        <span>Quantidade</span>
+        <input id="editar-produto-compra-quantidade" type="number" name="quantidade"
+          min="0.001" step="any" inputmode="decimal" required />
+      </label>
       <p id="mensagem-editar-produto-compra" class="form-feedback"
         role="status" aria-live="polite"></p>
       <div class="purchase-dialog-actions">

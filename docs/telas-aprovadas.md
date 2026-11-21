@@ -18,7 +18,7 @@ A versão de referência foi avaliada e aprovada no protótipo completo. Este ar
 - Sem limite de mercados no cadastro geral; limite de **quatro participantes por compra**.
 
 ### 3. Montagem da compra
-- Nome da compra, seleção dos mercados e itens com nome, quantidade e unidade.
+- Nome da compra, seleção dos mercados e itens com nome e quantidade, sem campo separado de unidade. Os preços são preenchidos depois, por mercado.
 - Dados preservados ao alterar uma compra em rascunho.
 
 ### 4. Registrar preços

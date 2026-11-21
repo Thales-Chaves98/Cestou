@@ -7,6 +7,7 @@ Documento de referência para implementar o MVP em incrementos. **Não significa
 - A lista geral de mercados não tem limite. A seleção para cada compra é limitada a **4**.
 - Rascunho pode ter um mercado; para comparar e finalizar, é necessário ter **pelo menos 2**.
 - Preços são relacionados a **(compra, item, mercado)** por ID, não salvos como atributo universal do mercado ou do produto.
+- No cadastro de produtos da montagem, informar apenas **nome e quantidade**, sem seletor de unidade e sem preço. Ex.: o nome pode especificar a apresentação desejada ("Arroz 5 kg"). O preço é informado individualmente para cada mercado na etapa Registrar preços.
 - Renomear o mercado não deve destruir os vínculos. Não excluir permanentemente um mercado usado em compras; considerar arquivamento quando essa funcionalidade for feita.
 - Se o usuário retirar um mercado de um rascunho, suas cotações anteriores poderão ser mantidas, mas não entram no cálculo enquanto estiver desmarcado.
 
