@@ -56,16 +56,17 @@ fecharJanelaNovaCompra.addEventListener('click', (e) => {
 
 listaCompras.addEventListener('click', (e) => {
     const btn = e.target.closest('button');
-    const id = btn.dataset.id;
 
     if(!btn) return;
+
+    const id = btn.dataset.id;
+
     if(btn.classList.contains('excluir-compra')){
         excluirCompraDialog.showModal();
         deletingCompraId = id;       
     }
 
     if(btn.classList.contains('editar-compra')){
-        editarCompraDialog.showModal();
         editingCompraId = id;
         abrirEditarCompra(editingCompraId);
     }
@@ -95,11 +96,6 @@ cancelarEdicaoCompra.addEventListener('click', (e) => {
     editingCompraId = null;
 });
 
-cancelarExclusaoCompra.addEventListener('click', (e) => {
-    e.preventDefault();
-    excluirCompraDialog.close();
-    deletingCompraId = null;
-});
 
 excluirCompraDialog.addEventListener('submit', (e) => {
     e.preventDefault();
