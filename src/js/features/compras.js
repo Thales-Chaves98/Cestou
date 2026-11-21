@@ -34,9 +34,10 @@ const mensagem = document.getElementById('mensagem-selecao-mercados');
 
 const formProdutosCompra = document.getElementById("form-produto-compra");
 const nomeProdutoInput = document.getElementById("produto-compra-nome");
-const quantidade = document.getElementById("produto-compra-quantidade");
+const quantidadeInput = document.getElementById("produto-compra-quantidade");
 
 let compras = carregarCompras();
+let produtos = [];
 
 let editingCompraId = null;
 let deletingCompraId = null;
@@ -183,6 +184,13 @@ formSelecionarMercados.addEventListener('submit', (e) => {
         mensagem.classList.add('feedback-error');
         mensagem.textContent = 'Selecione pelo menos um mercado antes de salvar!'
     }
+});
+
+formProdutosCompra.addEventListener('submit', (e) =>{
+    e.preventDefault();
+
+    criarProdutosCompra();
+
 });
 
 function adicionarCompra(){
@@ -335,6 +343,31 @@ function atualizarEstadoMercado(){
         checkbox.disabled = ids.length >= 4 && !checkbox.checked;
     });
 }
+
+
+//produtos
+
+function criarProdutosCompra(){
+    const nomeProduto = nomeProdutoInput.value.trim().toUpperCase();
+    const quantidadeProduto = Number(quantidadeInput.value);
+    
+    const produto = {
+        nomeProduto,
+        quantidadeProduto,
+    };
+
+    
+    if(nomeProduto !== "" && quantidadeProduto !== null){
+        produtos.push(produto);
+        console.log(produtos);
+
+    }
+
+    nomeProdutoInput.value = "";
+    quantidadeInput.value = 1;
+    
+}
+
 
 renderizarCompras();
 atualizarContadores();
