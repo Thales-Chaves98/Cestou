@@ -37,7 +37,6 @@ const nomeProdutoInput = document.getElementById("produto-compra-nome");
 const quantidadeInput = document.getElementById("produto-compra-quantidade");
 
 let compras = carregarCompras();
-let produtos = [];
 
 let editingCompraId = null;
 let deletingCompraId = null;
@@ -189,7 +188,7 @@ formSelecionarMercados.addEventListener('submit', (e) => {
 formProdutosCompra.addEventListener('submit', (e) =>{
     e.preventDefault();
 
-    criarProdutosCompra();
+    adicionarProdutosCompra();
 
 });
 
@@ -202,7 +201,8 @@ function adicionarCompra(){
         nome,
         status: "rascunho",
         criadaEm: new Date().toISOString(),
-        mercadosIds: []
+        mercadosIds: [],
+        produtos: []
     }
 
     if(nome !== ""){
@@ -347,24 +347,29 @@ function atualizarEstadoMercado(){
 
 //produtos
 
-function criarProdutosCompra(){
+function adicionarProdutosCompra(){
     const nomeProduto = nomeProdutoInput.value.trim().toUpperCase();
     const quantidadeProduto = Number(quantidadeInput.value);
+
+    const idCompra = compraAtualId;
+
+    const compra = compras.find((c) => c.id === idCompra);
     
     const produto = {
+        idProduto: crypto.randomUUID(),
         nomeProduto,
         quantidadeProduto,
     };
 
     
-    if(nomeProduto !== "" && quantidadeProduto !== null){
-        produtos.push(produto);
-        console.log(produtos);
-
+    if(nomeProduto !== "" && quantidadeProduto > 0 && Number.isFinite(quantidadeProduto)){
+        compra.produtos.push(produto);
+        salvarCompras(compras);
     }
 
     nomeProdutoInput.value = "";
     quantidadeInput.value = 1;
+    nomeProdutoInput.focus();
     
 }
 
