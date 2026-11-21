@@ -159,7 +159,7 @@ editarCompraDialog.addEventListener('submit', (e) => {
         editingCompra.nome = novoNome;
         salvarCompras(compras);
         renderizarCompras();
-        atualizarContadores();
+        atualizarContadoresCompras();
         editarCompraDialog.close();
         editingCompraId = null;
     }
@@ -216,7 +216,7 @@ function adicionarCompra(){
 
     nomeCompraInput.value = '';
     renderizarCompras();
-    atualizarContadores();
+    atualizarContadoresCompras();
     
 }
 
@@ -259,7 +259,7 @@ function renderizarCompras(){
     });
 }
 
-function atualizarContadores(){
+function atualizarContadoresCompras(){
      if(compras.length === 1) {
         totalCompras.innerHTML = `${compras.length} COMPRA`;
     } else {
@@ -280,7 +280,7 @@ function excluirCompra(id){
     compras = compras.filter((c) => c.id !== id);
     
     renderizarCompras();
-    atualizarContadores();
+    atualizarContadoresCompras();
     salvarCompras(compras);
 }
 
@@ -380,10 +380,12 @@ function adicionarProdutosCompra(){
 
 function renderizarProdutosCompra(){
     const compra = compras.find((c) => c.id === compraAtualId);
-    const produtosCompra = compra.produtos;
+    const produtosCompra = compra?.produtos ?? [];
     
     const modeloTemplateProdutos = document.getElementById("modelo-produto-compra");
     const produtosVazio = document.getElementById("produtos-compra-vazio");
+
+    const contadorProdutosCompra = document.getElementById("contador-produtos-compra");
 
     if(produtosCompra.length === 0){
         produtosVazio.style.display = "";
@@ -405,8 +407,10 @@ function renderizarProdutosCompra(){
 
         listaProdutosCompra.append(copiaTemplateProdutos);
     });
+
+    contadorProdutosCompra.innerHTML = `${produtosCompra.length} PRODUTO${produtosCompra.length ===1 ? "" : "S"}`;
 }
 
 
 renderizarCompras();
-atualizarContadores();
+atualizarContadoresCompras();
