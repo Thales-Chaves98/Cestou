@@ -30,6 +30,7 @@ const listaMercadosDisponiveis = document.getElementById("mercados-disponiveis")
 const contadorMercados = document.getElementById("contador-mercados-selecionados");
 
 const formSelecionarMercados = document.getElementById("form-selecionar-mercados");
+const mensagem = document.getElementById('mensagem-selecao-mercados');
 
 
 let compras = carregarCompras();
@@ -81,6 +82,8 @@ listaCompras.addEventListener('click', (e) => {
     if(btn.classList.contains('continuar-compra')){
         compraAtualId = id;
         window.location.hash = "montagem-compra";
+
+        mensagem.textContent = "";
 
         const nomeCompraMontagem = document.getElementById("nome-compra-montagem");
         nomeCompraMontagem.textContent = compras.find((c) => c.id === compraAtualId).nome;
@@ -161,8 +164,6 @@ formSelecionarMercados.addEventListener('submit', (e) => {
     const compra = compras.find((c) => c.id === idCompra);
     const ids = obterMercadosSelecionados();
 
-    const mensagem = document.getElementById('mensagem-selecao-mercados');
-
     if(ids.length >= 1 && ids.length <= 4){
         compra.mercadosIds = ids;
         salvarCompras(compras);
@@ -219,12 +220,17 @@ function renderizarCompras(){
         const ExcluirBtn = copiaTemplate.querySelector('.excluir-compra');
         const ContinuarBtn = copiaTemplate.querySelector('.continuar-compra');
 
+        const contadorCompraDetalhes = document.querySelector('.compra-detalhes');
+
+        tituloTemplate.textContent = c.nome;
+        dataTemplate.textContent = new Date(c.criadaEm).toLocaleDateString('pt-BR', {day: '2-digit', month: '2-digit', year: 'numeric'});
+        
         EditarBtn.dataset.id = c.id;
         ExcluirBtn.dataset.id = c.id;
         ContinuarBtn.dataset.id = c.id;
 
-        tituloTemplate.textContent = c.nome;
-        dataTemplate.textContent = new Date(c.criadaEm).toLocaleDateString('pt-BR', {day: '2-digit', month: '2-digit', year: 'numeric'});
+        contadorCompraDetalhes.innerHTML = `${c.mercadosIds.length} MERCADOS`;
+
         listaCompras.appendChild(copiaTemplate);
     });
 }
