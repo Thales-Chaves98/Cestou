@@ -20,6 +20,12 @@ const excluirCompraDialog = document.getElementById("dialog-excluir-compra");
 const fecharExclusaoCompra = document.getElementById("fechar-exclusao-compra");
 const cancelarExclusaoCompra = document.getElementById("cancelar-exclusao-compra");
 
+const editarCompraDialog = document.getElementById("dialog-editar-compra");
+const fecharEdicaoCompra = document.getElementById("fechar-edicao-compra");
+const cancelarEdicaoCompra = document.getElementById("cancelar-edicao-compra");
+const editarCompraNome = document.getElementById("editar-compra-nome");
+
+
 let compras = carregarCompras();
 
 let editingCompraId = null;
@@ -50,11 +56,18 @@ fecharJanelaNovaCompra.addEventListener('click', (e) => {
 
 listaCompras.addEventListener('click', (e) => {
     const btn = e.target.closest('button');
+    const id = btn.dataset.id;
 
     if(!btn) return;
     if(btn.classList.contains('excluir-compra')){
         excluirCompraDialog.showModal();
-        console.log('ID da compra a ser excluída:', deletingCompraId);
+        deletingCompraId = id;       
+    }
+
+    if(btn.classList.contains('editar-compra')){
+        editarCompraDialog.showModal();
+        editingCompraId = id;
+        abrirEditarCompra(editingCompraId);
     }
 });
 
@@ -68,6 +81,48 @@ cancelarExclusaoCompra.addEventListener('click', (e) => {
     e.preventDefault();
     excluirCompraDialog.close();
     deletingCompraId = null;
+});
+
+fecharEdicaoCompra.addEventListener('click', (e) => {
+    e.preventDefault();
+    editarCompraDialog.close();
+    editingCompraId = null;
+});
+
+cancelarEdicaoCompra.addEventListener('click', (e) => {
+    e.preventDefault();
+    editarCompraDialog.close();
+    editingCompraId = null;
+});
+
+cancelarExclusaoCompra.addEventListener('click', (e) => {
+    e.preventDefault();
+    excluirCompraDialog.close();
+    deletingCompraId = null;
+});
+
+excluirCompraDialog.addEventListener('submit', (e) => {
+    e.preventDefault();
+    excluirCompra(deletingCompraId);
+    excluirCompraDialog.close();
+    deletingCompraId = null;
+});
+
+editarCompraDialog.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const editingCompra = compras.find((c) => c.id === editingCompraId);
+    
+    const novoNome = editarCompraNome.value.trim().toUpperCase();
+
+    if(novoNome !== ""){
+        editingCompra.nome = novoNome;
+        salvarCompras(compras);
+        renderizarCompras();
+        atualizarContadores();
+        editarCompraDialog.close();
+        editingCompraId = null;
+    }
 });
 
 function adicionarCompra(){
@@ -112,6 +167,12 @@ function renderizarCompras(){
         const tituloTemplate = copiaTemplate.querySelector('.compra-nome');
         const dataTemplate = copiaTemplate.querySelector('.compra-data');
 
+        const EditarBtn = copiaTemplate.querySelector('.editar-compra');
+        const ExcluirBtn = copiaTemplate.querySelector('.excluir-compra');
+
+        EditarBtn.dataset.id = c.id;
+        ExcluirBtn.dataset.id = c.id;
+
         tituloTemplate.textContent = c.nome;
         dataTemplate.textContent = new Date(c.criadaEm).toLocaleDateString('pt-BR', {day: '2-digit', month: '2-digit', year: 'numeric'});
         listaCompras.appendChild(copiaTemplate);
@@ -133,6 +194,23 @@ function atualizarContadores(){
     resumoCompras.innerHTML = compras.length;
 }
 
+function excluirCompra(id){
+    if(!id) return;
+
+    compras = compras.filter((c) => c.id !== id);
+    
+    renderizarCompras();
+    atualizarContadores();
+    salvarCompras(compras);
+}
+
+function abrirEditarCompra(id){
+    editingCompraId = id;
+    editarCompraDialog.showModal();
+
+    const compra = compras.find((c) => c.id === id);
+    editarCompraNome.value = compra.nome;
+}
 
 renderizarCompras();
 atualizarContadores();
