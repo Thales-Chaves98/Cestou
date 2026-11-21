@@ -85,6 +85,7 @@ listaCompras.addEventListener('click', (e) => {
 
         mensagem.textContent = "";
         mensagem.classList.remove('feedback-sucesso');
+        mensagem.classList.remove('feedback-error');
 
         const nomeCompraMontagem = document.getElementById("nome-compra-montagem");
         nomeCompraMontagem.textContent = compras.find((c) => c.id === compraAtualId).nome;
@@ -106,6 +107,7 @@ listaMercadosDisponiveis.addEventListener('change', (e) => {
     const mensagem = document.getElementById('mensagem-selecao-mercados');
     mensagem.textContent = '';
     mensagem.classList.remove('feedback-sucesso');
+    mensagem.classList.remove('feedback-error');
 });
 
 fecharExclusaoCompra.addEventListener('click', (e) => {
@@ -170,9 +172,11 @@ formSelecionarMercados.addEventListener('submit', (e) => {
         salvarCompras(compras);
         renderizarCompras();
 
+        mensagem.classList.remove('feedback-error');
         mensagem.classList.add('feedback-sucesso');
         mensagem.textContent = 'Mercados salvos com sucesso!';
     } else {
+        mensagem.classList.remove('feedback-sucesso');
         mensagem.classList.add('feedback-error');
         mensagem.textContent = 'Selecione pelo menos um mercado antes de salvar!'
     }
