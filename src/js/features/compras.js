@@ -52,6 +52,8 @@ const confirmarExclusaoProduto = document.getElementById("confirmar-exclusao-pro
 const registrarPrecosBtn = document.getElementById("abrir-registro-precos");
 const nomeCompraRegistroPrecos = document.getElementById("nome-compra-registro-precos");
 
+const listaMercadosRegistroPreco = document.getElementById("mercados-registro-precos");
+
 let compras = carregarCompras();
 
 let editingCompraId = null;
@@ -294,13 +296,19 @@ confirmarExclusaoProduto.addEventListener('click', (e) =>{
     excluirProdutoDialog.close()
 });
 
-registrarPrecosBtn.addEventListener('click', (e) =>{
+registrarPrecosBtn.addEventListener('click', () =>{
     const compra = compras.find((c) => c.id === compraAtualId);
     if(!compra) return;
 
     nomeCompraRegistroPrecos.textContent = compra.nome;
 
     window.location.hash = "registrar-precos";
+});
+
+listaMercadosRegistroPreco.addEventListener('click', () =>{
+
+    renderizarMercadosRegistroPrecos();
+
 });
 
 function adicionarCompra(){
@@ -558,6 +566,29 @@ function abrirExclusaoProdutosCompra(id){
     nomeExcluirProduto.textContent = `DESEJA REALMENTE EXCLUIR ${produto.nomeProduto} DESTA COMPRA ?`;
 
     excluirProdutoDialog.showModal();
+}
+
+function renderizarMercadosRegistroPrecos(){
+    const compra = compras.filter((c) => c.id === compraAtualId);
+
+    const mercados = carregarMercados();
+
+    const mercadosSelecionados = mercados.filter((m)=> (compra.mercadosIds ?? []).includes(m.id)); 
+
+    const mercadoRegistroPrecosTemplate = document.getElementById("modelo-mercado-registro-precos");
+
+    listaMercadosRegistroPreco.innerHTML = ""; 
+    
+    mercadosSelecionados.forEach((m) =>{
+        mercadoRegistroPrecosTemplate.content.cloneNode(true);
+        const mercadoRegistroPrecosBtn = mercadoRegistroPrecosTemplate.querySelector(".mercado-registro-precos");
+
+        mercadoRegistroPrecosBtn.textContent = m.nonme;
+        
+        listaMercadosRegistroPreco.appendChild(mercadoRegistroPrecosTemplate);
+        
+    });
+    
 }
 
 renderizarCompras();
