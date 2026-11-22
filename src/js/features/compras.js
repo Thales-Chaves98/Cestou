@@ -316,9 +316,9 @@ listaMercadosRegistroPreco.addEventListener('click', (e) =>{
     if(!btn) return;
 
     const idBtn = btn.dataset.id;
+    mercadoAtualId = idBtn;
 
     if(btn.classList.contains("mercado-registro-precos")){
-        mercadoAtualId = idBtn;
 
         const botoesMercados = listaMercadosRegistroPreco.querySelectorAll(".mercado-registro-precos");
         
@@ -329,6 +329,13 @@ listaMercadosRegistroPreco.addEventListener('click', (e) =>{
         })
     }
 
+    const nomeMercadoRegistroPrecos = document.getElementById("nome-mercado-registro-precos");
+
+    const mercados = carregarMercados();
+
+    const mercado = mercados.find((m) => m.id === mercadoAtualId);
+
+    nomeMercadoRegistroPrecos.textContent = mercado.nome;
 });
 
 function adicionarCompra(){
