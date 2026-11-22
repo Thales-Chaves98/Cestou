@@ -320,8 +320,13 @@ listaMercadosRegistroPreco.addEventListener('click', (e) =>{
     if(btn.classList.contains("mercado-registro-precos")){
         mercadoAtualId = idBtn;
 
+        const botoesMercados = listaMercadosRegistroPreco.querySelectorAll(".mercado-registro-precos");
         
-        console.log(mercadoAtualId);
+        botoesMercados.forEach((b) =>{
+            const selecionado = b.dataset.id === mercadoAtualId;
+
+            console.log(selecionado);
+        })
     }
 
 });
