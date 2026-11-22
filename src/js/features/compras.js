@@ -232,7 +232,7 @@ editarProdutoDialog.addEventListener('submit', (e) =>{
     const novoNomeProduto = editarNomeProduto.value.trim().toUpperCase();
     const novaQuantidadeProduto = Number(editarQuantidadeProduto.value);
 
-    if(editarNomeProduto !== "" && editarQuantidadeProduto > 0 && Number.isFinite(editarQuantidadeProduto)){
+    if(novoNomeProduto !== "" && novaQuantidadeProduto > 0 && Number.isFinite(novaQuantidadeProduto)){
         produto.nomeProduto = novoNomeProduto;
         produto.quantidadeProduto = novaQuantidadeProduto;
         salvarCompras(compras);
