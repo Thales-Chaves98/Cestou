@@ -37,6 +37,7 @@ const nomeProdutoInput = document.getElementById("produto-compra-nome");
 const quantidadeInput = document.getElementById("produto-compra-quantidade");
 
 const listaProdutosCompra = document.getElementById("lista-produtos-compra");
+
 const editarProdutoDialog = document.getElementById("dialog-editar-produto-compra");
 const editarNomeProduto =document.getElementById("editar-produto-compra-nome");
 const editarQuantidadeProduto =document.getElementById("editar-produto-compra-quantidade");
@@ -213,6 +214,32 @@ listaProdutosCompra.addEventListener('click', (e) =>{
 
     if(btn.classList.contains("excluir-produto-compra")){
         console.log("deletar " + id);
+    }
+
+});
+
+editarProdutoDialog.addEventListener('submit', (e) =>{
+    e.preventDefault();
+
+    const compra = compras.find((c) => c.id === compraAtualId);
+
+    if(!compra) return;
+
+    const produto = (compra.produtos ?? []).find((p) => p.idProduto === editingProdutoId);
+
+    if(!produto) return;
+
+    const novoNomeProduto = editarNomeProduto.value.trim().toUpperCase();
+    const novaQuantidadeProduto = Number(editarQuantidadeProduto.value);
+
+    if(editarNomeProduto !== "" && editarQuantidadeProduto > 0 && Number.isFinite(editarQuantidadeProduto)){
+        produto.nomeProduto = novoNomeProduto;
+        produto.quantidadeProduto = novaQuantidadeProduto;
+        salvarCompras(compras);
+        renderizarProdutosCompra();
+        editarProdutoDialog.close();
+
+        editingProdutoId = null;
     }
 
 });
