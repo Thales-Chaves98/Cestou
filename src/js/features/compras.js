@@ -512,7 +512,7 @@ function renderizarProdutosCompra(){
         listaProdutosCompra.append(copiaTemplateProdutos);
     });
 
-    contadorProdutosCompra.innerHTML = `${produtosCompra.length} PRODUTO${produtosCompra.length ===1 ? "" : "S"}`;
+    contadorProdutosCompra.textContent = `${produtosCompra.length} PRODUTO${produtosCompra.length ===1 ? "" : "S"}`;
 }
 
 function abrirEdicaoProdutosCompra(id){
