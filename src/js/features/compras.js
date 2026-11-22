@@ -37,7 +37,8 @@ const nomeProdutoInput = document.getElementById("produto-compra-nome");
 const quantidadeInput = document.getElementById("produto-compra-quantidade");
 
 const listaProdutosCompra = document.getElementById("lista-produtos-compra");
-const editarNomeProduto =document.getElementById("dialog-editar-produto-compra");
+const editarProdutoDialog = document.getElementById("dialog-editar-produto-compra");
+const editarNomeProduto =document.getElementById("editar-produto-compra-nome");
 const editarQuantidadeProduto =document.getElementById("editar-produto-compra-quantidade");
 
 let compras = carregarCompras();
@@ -442,11 +443,19 @@ function renderizarProdutosCompra(){
 
 function abrirEdicaoProdutosCompra(id){
     editingProdutoId = id;
+    
+    const compra = compras.find((c) => c.id === compraAtualId);
+
+    if(!compra) return;
+
+    const produto = (compra.produtos ?? []).find((p) => p.idProduto === editingProdutoId);
+
+    if(!produto) return;
+
+    editarNomeProduto.value = produto.nomeProduto;
+    editarQuantidadeProduto.value = produto.quantidadeProduto;
+
     editarProdutoDialog.showModal();
-
-    editarNomeProduto.value = compras.produtos.find((p) => p.idProduto === editingProdutoId).nomeProduto;
-    editarQuantidadeProduto.value = compras.produtos.find((p) => p.idProduto === editingProdutoId).quantidadeProduto;
-
 }
 
 renderizarCompras();
