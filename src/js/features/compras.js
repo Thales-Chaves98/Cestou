@@ -49,6 +49,9 @@ const cancelarExclusaoProduto = document.getElementById("cancelar-exclusao-produ
 const fecharExclusaoProduto = document.getElementById("fechar-exclusao-produto-compra");
 const confirmarExclusaoProduto = document.getElementById("confirmar-exclusao-produto-compra");
 
+const registrarPrecosBtn = document.getElementById("abrir-registro-precos");
+const nomeCompraRegistroPrecos = document.getElementById("nome-compra-registro-precos");
+
 let compras = carregarCompras();
 
 let editingCompraId = null;
@@ -289,6 +292,15 @@ confirmarExclusaoProduto.addEventListener('click', (e) =>{
     renderizarCompras();
 
     excluirProdutoDialog.close()
+});
+
+registrarPrecosBtn.addEventListener('click', (e) =>{
+    const compra = compras.find((c) => c.id === compraAtualId);
+    if(!compra) return;
+
+    nomeCompraRegistroPrecos.textContent = compra.nome;
+
+    window.location.hash = "registrar-precos";
 });
 
 function adicionarCompra(){
