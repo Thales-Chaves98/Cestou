@@ -569,7 +569,7 @@ function abrirExclusaoProdutosCompra(id){
 }
 
 function renderizarMercadosRegistroPrecos(){
-    const compra = compras.filter((c) => c.id === compraAtualId);
+    const compra = compras.find((c) => c.id === compraAtualId);
 
     const mercados = carregarMercados();
 
@@ -580,10 +580,10 @@ function renderizarMercadosRegistroPrecos(){
     listaMercadosRegistroPreco.innerHTML = ""; 
     
     mercadosSelecionados.forEach((m) =>{
-        mercadoRegistroPrecosTemplate.content.cloneNode(true);
-        const mercadoRegistroPrecosBtn = mercadoRegistroPrecosTemplate.querySelector(".mercado-registro-precos");
+        const regostroPrecosCopia = mercadoRegistroPrecosTemplate.content.cloneNode(true);
+        const mercadoRegistroPrecosBtn = regostroPrecosCopia.querySelector(".mercado-registro-precos");
 
-        mercadoRegistroPrecosBtn.textContent = m.nonme;
+        mercadoRegistroPrecosBtn.textContent = m.nome;
         
         listaMercadosRegistroPreco.appendChild(mercadoRegistroPrecosTemplate);
         
