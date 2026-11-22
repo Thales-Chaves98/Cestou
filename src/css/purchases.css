@@ -6,10 +6,11 @@
 
 /* "Compras" é a página inicial; "Mercados" aparece ao navegar para #mercados. */
 #compras { display: block; }
-#mercados, #montagem-compra { display: none; }
-#mercados:target, #montagem-compra:target { display: block; }
+#mercados, #montagem-compra, #registrar-precos { display: none; }
+#mercados:target, #montagem-compra:target, #registrar-precos:target { display: block; }
 body:has(#mercados:target) #compras,
-body:has(#montagem-compra:target) #compras { display: none; }
+body:has(#montagem-compra:target) #compras,
+body:has(#registrar-precos:target) #compras { display: none; }
 
 body:not(:has(#mercados:target)) .desktop-navigation a[href="#compras"],
 body:has(#mercados:target) .desktop-navigation a[href="#mercados"] {

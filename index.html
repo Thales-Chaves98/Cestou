@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="./src/css/markets.css" />
   <link rel="stylesheet" href="./src/css/purchases.css" />
   <link rel="stylesheet" href="./src/css/assembly.css" />
+  <link rel="stylesheet" href="./src/css/prices.css" />
   <link rel="stylesheet" href="./src/css/comparison.css" />
   <script type="module" src="./src/js/app.js"></script>
 </head>
@@ -42,7 +43,7 @@
         <a href="#compras">Compras</a>
         <a href="#mercados">Mercados</a>
       </nav>
-      <span class="header-label">Projeto educacional · Etapa 05</span>
+      <span class="header-label">Projeto educacional · Etapa 06</span>
     </div>
   </header>
 
@@ -257,6 +258,125 @@
           </template>
         </section>
       </div>
+
+      <!-- Etapa 6: a navegação será ativada pelo JavaScript do aluno após escolher a compra. -->
+      <div class="assembly-price-next panel">
+        <div>
+          <strong>Montagem concluída?</strong>
+          <p>Registre o preço de cada produto nos mercados que você selecionou.</p>
+        </div>
+        <button id="abrir-registro-precos" class="button button-primary" type="button">
+          Registrar preços
+        </button>
+      </div>
+    </section>
+
+    <!-- Etapa 6: registrar os preços de um mercado por vez. A interação e a
+         persistência por compra/produto/mercado serão implementadas pelo aluno. -->
+    <section id="registrar-precos" class="app-view prices-page" aria-labelledby="registro-precos-title">
+      <a class="back-link" href="#montagem-compra">← Voltar à montagem</a>
+
+      <div class="page-header">
+        <div>
+          <p class="eyebrow">Pesquisa de preços</p>
+          <h1 id="registro-precos-title">Registrar preços</h1>
+          <p>Preencha os valores de um mercado por vez. Você pode deixar itens sem preço para completar depois.</p>
+        </div>
+      </div>
+
+      <nav class="workflow-tabs" aria-label="Etapas da compra">
+        <a class="workflow-tab" href="#montagem-compra">1. Montagem</a>
+        <span class="workflow-tab tab-active" aria-current="step">2. Preços</span>
+        <span class="workflow-tab tab-disabled">3. Comparar</span>
+        <span class="workflow-tab tab-disabled">4. Listas</span>
+      </nav>
+
+      <section class="panel prices-context" aria-label="Compra em cotação">
+        <div>
+          <span class="eyebrow">Compra selecionada</span>
+          <h2 id="nome-compra-registro-precos">Selecione uma compra</h2>
+          <p>Os valores registrados pertencem somente a esta compra.</p>
+        </div>
+        <span class="status-badge status-draft">Rascunho</span>
+      </section>
+
+      <section class="panel box-section price-register-panel" aria-labelledby="precos-mercado-title">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Passo 1</p>
+            <h2 id="precos-mercado-title">Selecione o mercado</h2>
+            <p>Alterne entre os mercados participantes para preencher os preços.</p>
+          </div>
+        </div>
+
+        <div id="mercados-registro-precos" class="market-switcher price-market-switcher"
+          role="group" aria-label="Mercados desta compra"></div>
+        <template id="modelo-mercado-registro-precos">
+          <button class="market-switch mercado-registro-precos" type="button"></button>
+        </template>
+        <p id="mercados-registro-precos-vazio" class="price-setup-note">
+          Abra uma compra com mercados selecionados para começar.
+        </p>
+
+        <div class="price-current-market">
+          <div>
+            <span class="eyebrow">Preços do mercado</span>
+            <h3 id="nome-mercado-registro-precos">Nenhum mercado selecionado</h3>
+          </div>
+          <span id="contador-precos-registro" class="count-pill" aria-live="polite">0 de 0 preços</span>
+        </div>
+
+        <progress id="progresso-precos-registro" class="price-progress"
+          value="0" max="100" aria-label="Progresso de preços cadastrados"></progress>
+
+        <div class="price-tools price-register-tools">
+          <label class="search-field field" for="buscar-produtos-precos">
+            <span>Buscar produto</span>
+            <input id="buscar-produtos-precos" type="search" placeholder="Ex.: arroz"
+              autocomplete="off" />
+          </label>
+          <label class="compact-check">
+            <input id="filtrar-precos-pendentes" type="checkbox" />
+            Somente pendentes
+          </label>
+        </div>
+
+        <form id="form-registro-precos">
+          <div id="lista-precos-produtos" class="price-list"
+            role="list" aria-label="Preços dos produtos neste mercado"></div>
+
+          <p id="precos-produtos-vazio" class="price-setup-note">
+            Os produtos da compra aparecerão aqui para informar seus preços.
+          </p>
+
+          <template id="modelo-preco-produto">
+            <div class="price-line" role="listitem">
+              <div class="price-product">
+                <strong class="preco-produto-nome"></strong>
+                <small class="preco-produto-quantidade"></small>
+              </div>
+              <label class="price-field">
+                <span>R$</span>
+                <input class="preco-produto-input" type="text" inputmode="decimal"
+                  maxlength="14" placeholder="0,00" autocomplete="off"
+                  aria-label="Preço deste produto" />
+              </label>
+            </div>
+          </template>
+
+          <p id="mensagem-registro-precos" class="form-feedback"
+            role="status" aria-live="polite"></p>
+
+          <div class="price-register-actions">
+            <button id="salvar-precos-mercado" class="button button-primary"
+              type="submit">Salvar preços deste mercado</button>
+          </div>
+        </form>
+
+        <p class="help-text price-register-help">
+          Deixe em branco os valores ainda não pesquisados. Preço não informado não é R$ 0,00.
+        </p>
+      </section>
     </section>
 
     <section id="mercados" class="app-view" aria-labelledby="markets-title">

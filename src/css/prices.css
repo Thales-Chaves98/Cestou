@@ -1,0 +1,77 @@
+/* Cestou Fresh — Etapa 6: registro de preços por mercado.
+ * A navegação, renderização e persistência serão feitas pelo aluno em JS. */
+.prices-page .workflow-tabs { margin-bottom: 18px; }
+
+.assembly-price-next {
+  margin-top: 18px; padding: 17px 19px;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 13px;
+}
+.assembly-price-next > div { flex: 1 1 210px; min-width: 0; }
+.assembly-price-next strong { font-size: .86rem; }
+.assembly-price-next p {
+  margin: 5px 0 0; color: var(--muted); font-size: .74rem; line-height: 1.55;
+}
+
+.prices-context {
+  margin-bottom: 18px; padding: 20px 22px;
+  display: flex; flex-wrap: wrap; align-items: flex-start;
+  justify-content: space-between; gap: 14px;
+}
+.prices-context > div { min-width: 0; flex: 1 1 200px; }
+.prices-context h2 { margin: 0 0 5px; font-size: 1.07rem; overflow-wrap: anywhere; }
+.prices-context p { margin: 0; color: var(--muted); font-size: .74rem; }
+.price-register-panel { max-width: 100%; }
+.price-market-switcher { margin-bottom: 7px; }
+.price-setup-note {
+  background: var(--soft); border: 1px dashed var(--line);
+  border-radius: var(--radius-md);
+  padding: 15px; margin: 0 0 16px;
+  color: var(--muted); font-size: .76rem; line-height: 1.6;
+}
+.price-setup-note[hidden] { display: none; }
+.price-current-market {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 8px 16px; margin: 18px 0 11px;
+}
+.price-current-market .eyebrow { margin: 0 0 4px; }
+.price-current-market h3 {
+  margin: 0; font-size: 1rem; overflow-wrap: anywhere;
+}
+.price-progress {
+  display: block; width: 100%; height: 8px; margin-bottom: 20px;
+  appearance: none; border: 0; border-radius: 100px;
+  overflow: hidden; background: #e5ece5;
+}
+.price-progress::-webkit-progress-bar { background: #e5ece5; }
+.price-progress::-webkit-progress-value { background: var(--primary); border-radius: 100px; }
+.price-progress::-moz-progress-bar { background: var(--primary); border-radius: 100px; }
+.price-register-tools { margin-top: 0; margin-bottom: 15px; align-items: flex-end; }
+.price-register-tools .search-field { gap: 5px; }
+.price-register-tools .search-field > span { font-size: .75rem; }
+.price-register-tools .compact-check { min-height: 42px; }
+#lista-precos-produtos:empty { display: none; }
+.price-register-actions { display: flex; justify-content: flex-end; margin-top: 18px; }
+.price-register-help { margin-top: 13px; }
+#mensagem-registro-precos:not(:empty) { margin-top: 13px; }
+#mensagem-registro-precos.feedback-sucesso {
+  padding: 12px 14px; border-radius: var(--radius-sm);
+  border: 1px solid #b2d8be; background: var(--mint);
+  color: var(--primary); font-size: .76rem; font-weight: 800;
+}
+#mensagem-registro-precos.feedback-error {
+  padding: 12px 14px; border-radius: var(--radius-sm);
+  border: 1px solid #f3d6d1; background: var(--danger-soft);
+  color: var(--danger); font-size: .76rem; font-weight: 800;
+}
+@media (max-width: 700px) {
+  .prices-context { padding: 17px; }
+  .assembly-price-next .button, .price-register-actions .button { width: 100%; }
+  .price-register-tools { align-items: flex-start; flex-direction: column; }
+  .price-register-tools .search-field { width: 100%; }
+}
+@media (max-width: 370px) {
+  .price-line { flex-wrap: wrap; }
+  .price-line .price-product { flex: 1 1 100%; }
+  .price-field { flex: 1 1 100%; }
+}
