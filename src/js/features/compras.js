@@ -517,12 +517,17 @@ function abrirEdicaoProdutosCompra(id){
 
 function abrirExclusaoProdutosCompra(id){
     deletingProdutoId = id;
-    excluirProdutoDialog.showModal();
+
+    const compra = compras.find((c) => c.id == compraAtualId);
+    const produto = (compra.produtos ?? []).find((p) => p.idProduto === deletingProdutoId);
+
+    if(!produto) return
 
     const nomeExcluirProduto = document.getElementById("excluir-produto-compra-descricao");
-    const produto = compras.produto.find((p) => p.idProduto === deletingProdutoId);
 
-    nomeExcluirProduto.textContent = produto.nomeProduto;
+    nomeExcluirProduto.innerHTML = `DESEJA REALMENTE EXCLUIR <strong>${produto.nomeProduto}</strong> DESTA COMPRA?`;
+
+    excluirProdutoDialog.showModal();
 }
 
 renderizarCompras();
