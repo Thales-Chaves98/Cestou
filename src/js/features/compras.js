@@ -305,9 +305,17 @@ registrarPrecosBtn.addEventListener('click', () =>{
     window.location.hash = "registrar-precos";
 });
 
-listaMercadosRegistroPreco.addEventListener('click', () =>{
+listaMercadosRegistroPreco.addEventListener('click', (e) =>{
 
-    renderizarMercadosRegistroPrecos();
+    const btn = e.target.closest('button');
+
+    if(!btn) return;
+
+    const id = btn.dataset.id;
+
+    if(btn.classList.contains("registrarPrecosBtn")){
+        renderizarMercadosRegistroPrecos();
+    }
 
 });
 
@@ -582,10 +590,12 @@ function renderizarMercadosRegistroPrecos(){
     mercadosSelecionados.forEach((m) =>{
         const registroPrecosCopia = mercadoRegistroPrecosTemplate.content.cloneNode(true);
         const mercadoRegistroPrecosBtn = registroPrecosCopia.querySelector(".mercado-registro-precos");
+        const registrarPrecosBtn = registroPrecosCopia.querySelector(".registrarPrecosBtn");
 
         mercadoRegistroPrecosBtn.textContent = m.nome;
+        registrarPrecosBtn.dataset.id = m.id;
         
-        listaMercadosRegistroPreco.appendChild(mercadoRegistroPrecosTemplate);
+        listaMercadosRegistroPreco.appendChild(registroPrecosCopia);
         
     });
     
