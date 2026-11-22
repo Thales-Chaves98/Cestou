@@ -47,6 +47,7 @@ const fecharEdicaoProduto = document.getElementById("fechar-edicao-produto-compr
 const excluirProdutoDialog = document.getElementById("dialog-excluir-produto-compra");
 const cancelarExclusaoProduto = document.getElementById("cancelar-exclusao-produto-compra");
 const fecharExclusaoProduto = document.getElementById("fechar-exclusao-produto-compra");
+const confirmarExclusaoProduto = document.getElementById("confirmar-exclusao-produto-compra");
 
 let compras = carregarCompras();
 
@@ -272,6 +273,14 @@ cancelarExclusaoProduto.addEventListener('click', () =>{
 
 excluirProdutoDialog.addEventListener('close', () => {
     deletingProdutoId = null;
+});
+
+confirmarExclusaoProduto.addEventListener('click', (e) =>{
+    e.preventDefault();
+    
+    const compra = compras.find((c) => c.id === compraAtualId);
+
+    compras.produtos = compra.produtos.filter((p) => p.idProduto !== deletingProdutoId);
 });
 
 function adicionarCompra(){
@@ -518,14 +527,15 @@ function abrirEdicaoProdutosCompra(id){
 function abrirExclusaoProdutosCompra(id){
     deletingProdutoId = id;
 
-    const compra = compras.find((c) => c.id == compraAtualId);
+    const compra = compras.find((c) => c.id === compraAtualId);
     const produto = (compra.produtos ?? []).find((p) => p.idProduto === deletingProdutoId);
 
     if(!produto) return
+    if(!compra) return
 
     const nomeExcluirProduto = document.getElementById("excluir-produto-compra-descricao");
 
-    nomeExcluirProduto.innerHTML = `DESEJA REALMENTE EXCLUIR <strong>${produto.nomeProduto}</strong> DESTA COMPRA?`;
+    nomeExcluirProduto.textContent = `DESEJA REALMENTE EXCLUIR ${produto.nomeProduto} DESTA COMPRA ?`;
 
     excluirProdutoDialog.showModal();
 }
