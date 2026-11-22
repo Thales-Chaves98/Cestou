@@ -318,11 +318,7 @@ listaMercadosRegistroPreco.addEventListener('click', (e) =>{
     const idBtn = btn.dataset.id;
 
     if(btn.classList.contains("mercado-registro-precos")){
-        renderizarMercadosRegistroPrecos();
-
-        const compra = compras.find((c) => c.id === compraAtualId);
-
-        const mercadoAtualId = compra.mercadosIds.find((m) => m.id === idBtn);
+        mercadoAtualId = idBtn;
 
         
         console.log(mercadoAtualId);
