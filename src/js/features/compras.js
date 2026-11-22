@@ -44,6 +44,10 @@ const editarQuantidadeProduto = document.getElementById("editar-produto-compra-q
 const cancelarEdicaoProduto = document.getElementById("cancelar-edicao-produto-compra");
 const fecharEdicaoProduto = document.getElementById("fechar-edicao-produto-compra");
 
+const excluirProdutoDialog = document.getElementById("dialog-excluir-produto-compra");
+const cancelarExclusaoProduto = document.getElementById("cancelar-exclusao-produto-compra");
+const fecharExclusaoProduto = document.getElementById("fechar-exclusao-produto-compra");
+
 let compras = carregarCompras();
 
 let editingCompraId = null;
@@ -215,7 +219,7 @@ listaProdutosCompra.addEventListener('click', (e) =>{
     }
 
     if(btn.classList.contains("excluir-produto-compra")){
-        console.log("deletar " + id);
+        abrirExclusaoProdutosCompra(id);
     }
 
 });
@@ -256,6 +260,18 @@ cancelarEdicaoProduto.addEventListener('click', () =>{
 
 editarProdutoDialog.addEventListener('close', () => {
     editingProdutoId = null;
+});
+
+fecharExclusaoProduto.addEventListener('click', () =>{
+    excluirProdutoDialog.close();
+});
+
+cancelarExclusaoProduto.addEventListener('click', () =>{
+    excluirProdutoDialog.close();
+});
+
+excluirProdutoDialog.addEventListener('close', () => {
+    deletingProdutoId = null;
 });
 
 function adicionarCompra(){
@@ -497,6 +513,16 @@ function abrirEdicaoProdutosCompra(id){
     editarQuantidadeProduto.value = produto.quantidadeProduto;
 
     editarProdutoDialog.showModal();
+}
+
+function abrirExclusaoProdutosCompra(id){
+    deletingProdutoId = id;
+    excluirProdutoDialog.showModal();
+
+    const nomeExcluirProduto = document.getElementById("excluir-produto-compra-descricao");
+    const produto = compras.produto.find((p) => p.idProduto === deletingProdutoId);
+
+    nomeExcluirProduto.textContent = produto.nomeProduto;
 }
 
 renderizarCompras();
