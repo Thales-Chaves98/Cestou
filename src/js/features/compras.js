@@ -54,6 +54,8 @@ const nomeCompraRegistroPrecos = document.getElementById("nome-compra-registro-p
 
 const listaMercadosRegistroPreco = document.getElementById("mercados-registro-precos");
 
+const listaPrecoProdutos = document.getElementById("lista-precos-produtos");
+
 let compras = carregarCompras();
 
 let editingCompraId = null;
@@ -316,9 +318,9 @@ listaMercadosRegistroPreco.addEventListener('click', (e) =>{
     if(!btn) return;
 
     const idBtn = btn.dataset.id;
-    mercadoAtualId = idBtn;
-
+    
     if(btn.classList.contains("mercado-registro-precos")){
+        mercadoAtualId = idBtn;
 
         const botoesMercados = listaMercadosRegistroPreco.querySelectorAll(".mercado-registro-precos");
         
@@ -334,8 +336,13 @@ listaMercadosRegistroPreco.addEventListener('click', (e) =>{
     const mercados = carregarMercados();
 
     const mercado = mercados.find((m) => m.id === mercadoAtualId);
+    if(!mercado) return;
 
     nomeMercadoRegistroPrecos.textContent = mercado.nome;
+});
+
+listaPrecoProdutos.addEventListener('click', (e) =>{
+
 });
 
 function adicionarCompra(){
@@ -617,6 +624,16 @@ function renderizarMercadosRegistroPrecos(){
         
     });
     
+}
+
+function renderizarProdutosRegistroPrecos(){
+    const compra = compras.find((c) => c.id === compraAtualId);
+
+    const produtos = compra.produtos;
+
+    produtos.forEach((p) =>{
+        consoloe.log(p.nome);
+    });
 }
 
 renderizarCompras();
