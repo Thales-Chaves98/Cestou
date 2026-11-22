@@ -280,7 +280,15 @@ confirmarExclusaoProduto.addEventListener('click', (e) =>{
     
     const compra = compras.find((c) => c.id === compraAtualId);
 
-    compras.produtos = compra.produtos.filter((p) => p.idProduto !== deletingProdutoId);
+    if(!compra) return;
+
+    compra.produtos = (compra.produtos ?? []).filter((p) => p.idProduto !== deletingProdutoId);
+
+    salvarCompras(compras);
+    renderizarProdutosCompra();
+    renderizarCompras();
+
+    excluirProdutoDialog.close()
 });
 
 function adicionarCompra(){
@@ -528,10 +536,10 @@ function abrirExclusaoProdutosCompra(id){
     deletingProdutoId = id;
 
     const compra = compras.find((c) => c.id === compraAtualId);
-    const produto = (compra.produtos ?? []).find((p) => p.idProduto === deletingProdutoId);
-
-    if(!produto) return
     if(!compra) return
+    
+    const produto = (compra.produtos ?? []).find((p) => p.idProduto === deletingProdutoId);
+    if(!produto) return
 
     const nomeExcluirProduto = document.getElementById("excluir-produto-compra-descricao");
 
