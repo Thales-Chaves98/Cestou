@@ -303,6 +303,8 @@ registrarPrecosBtn.addEventListener('click', () =>{
     nomeCompraRegistroPrecos.textContent = compra.nome;
 
     window.location.hash = "registrar-precos";
+
+    renderizarMercadosRegistroPrecos();
 });
 
 listaMercadosRegistroPreco.addEventListener('click', (e) =>{
@@ -590,10 +592,9 @@ function renderizarMercadosRegistroPrecos(){
     mercadosSelecionados.forEach((m) =>{
         const registroPrecosCopia = mercadoRegistroPrecosTemplate.content.cloneNode(true);
         const mercadoRegistroPrecosBtn = registroPrecosCopia.querySelector(".mercado-registro-precos");
-        const registrarPrecosBtn = registroPrecosCopia.querySelector(".registrarPrecosBtn");
 
         mercadoRegistroPrecosBtn.textContent = m.nome;
-        registrarPrecosBtn.dataset.id = m.id;
+        mercadoRegistroPrecosBtn.dataset.id = m.id; 
         
         listaMercadosRegistroPreco.appendChild(registroPrecosCopia);
         
