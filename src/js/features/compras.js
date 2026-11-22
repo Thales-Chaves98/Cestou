@@ -325,7 +325,7 @@ listaMercadosRegistroPreco.addEventListener('click', (e) =>{
         botoesMercados.forEach((b) =>{
             const selecionado = b.dataset.id === mercadoAtualId;
 
-            console.log(selecionado);
+            b.classList.toggle("market-switch-active", selecionado);
         })
     }
 
