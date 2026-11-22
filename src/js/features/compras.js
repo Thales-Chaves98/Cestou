@@ -37,6 +37,8 @@ const nomeProdutoInput = document.getElementById("produto-compra-nome");
 const quantidadeInput = document.getElementById("produto-compra-quantidade");
 
 const listaProdutosCompra = document.getElementById("lista-produtos-compra");
+const editarNomeProduto =document.getElementById("dialog-editar-produto-compra");
+const editarQuantidadeProduto =document.getElementById("editar-produto-compra-quantidade");
 
 let compras = carregarCompras();
 
@@ -44,6 +46,8 @@ let editingCompraId = null;
 let deletingCompraId = null;
 let compraAtualId = null;
 
+let editingProdutoId = null;
+let deletingProdutoId = null;
 
 formCompra.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -198,10 +202,12 @@ formProdutosCompra.addEventListener('submit', (e) =>{
 listaProdutosCompra.addEventListener('click', (e) =>{
     const btn = e.target.closest('button');
 
+    if(!btn) return;
+
     const id = btn.dataset.id;
 
     if(btn.classList.contains("editar-produto-compra")){
-        console.log("editar " + id);
+        abrirEdicaoProdutosCompra(id);
     }
 
     if(btn.classList.contains("excluir-produto-compra")){
@@ -434,6 +440,14 @@ function renderizarProdutosCompra(){
     contadorProdutosCompra.innerHTML = `${produtosCompra.length} PRODUTO${produtosCompra.length ===1 ? "" : "S"}`;
 }
 
+function abrirEdicaoProdutosCompra(id){
+    editingProdutoId = id;
+    editarProdutoDialog.showModal();
+
+    editarNomeProduto.value = compras.produtos.find((p) => p.idProduto === editingProdutoId).nomeProduto;
+    editarQuantidadeProduto.value = compras.produtos.find((p) => p.idProduto === editingProdutoId).quantidadeProduto;
+
+}
 
 renderizarCompras();
 atualizarContadoresCompras();
