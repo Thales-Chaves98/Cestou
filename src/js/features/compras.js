@@ -58,7 +58,9 @@ let compras = carregarCompras();
 
 let editingCompraId = null;
 let deletingCompraId = null;
+
 let compraAtualId = null;
+let mercadoAtualId = null;
 
 let editingProdutoId = null;
 let deletingProdutoId = null;
@@ -313,10 +315,17 @@ listaMercadosRegistroPreco.addEventListener('click', (e) =>{
 
     if(!btn) return;
 
-    const id = btn.dataset.id;
+    const idBtn = btn.dataset.id;
 
-    if(btn.classList.contains("registrarPrecosBtn")){
+    if(btn.classList.contains("mercado-registro-precos")){
         renderizarMercadosRegistroPrecos();
+
+        const compra = compras.find((c) => c.id === compraAtualId);
+
+        const mercadoAtualId = compra.mercadosIds.find((m) => m.id === idBtn);
+
+        
+        console.log(mercadoAtualId);
     }
 
 });
