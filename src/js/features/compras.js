@@ -580,8 +580,8 @@ function renderizarMercadosRegistroPrecos(){
     listaMercadosRegistroPreco.innerHTML = ""; 
     
     mercadosSelecionados.forEach((m) =>{
-        const regostroPrecosCopia = mercadoRegistroPrecosTemplate.content.cloneNode(true);
-        const mercadoRegistroPrecosBtn = regostroPrecosCopia.querySelector(".mercado-registro-precos");
+        const registroPrecosCopia = mercadoRegistroPrecosTemplate.content.cloneNode(true);
+        const mercadoRegistroPrecosBtn = registroPrecosCopia.querySelector(".mercado-registro-precos");
 
         mercadoRegistroPrecosBtn.textContent = m.nome;
         
