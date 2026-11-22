@@ -39,8 +39,10 @@ const quantidadeInput = document.getElementById("produto-compra-quantidade");
 const listaProdutosCompra = document.getElementById("lista-produtos-compra");
 
 const editarProdutoDialog = document.getElementById("dialog-editar-produto-compra");
-const editarNomeProduto =document.getElementById("editar-produto-compra-nome");
-const editarQuantidadeProduto =document.getElementById("editar-produto-compra-quantidade");
+const editarNomeProduto = document.getElementById("editar-produto-compra-nome");
+const editarQuantidadeProduto = document.getElementById("editar-produto-compra-quantidade");
+const cancelarEdicaoProduto = document.getElementById("cancelar-edicao-produto-compra");
+const fecharEdicaoProduto = document.getElementById("fechar-edicao-produto-compra");
 
 let compras = carregarCompras();
 
@@ -242,6 +244,18 @@ editarProdutoDialog.addEventListener('submit', (e) =>{
         editingProdutoId = null;
     }
 
+});
+
+fecharEdicaoProduto.addEventListener('click', () =>{
+    editarProdutoDialog.close();
+});
+
+cancelarEdicaoProduto.addEventListener('click', () =>{
+    editarProdutoDialog.close();
+});
+
+editarProdutoDialog.addEventListener('close', () => {
+    editingProdutoId = null;
 });
 
 function adicionarCompra(){
